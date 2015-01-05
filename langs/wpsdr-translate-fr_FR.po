@@ -1,0 +1,94 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Simple Delete Revisions by b*web v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2015-01-02 21:24:59+0000\n"
+"Last-Translator: Brice Capobianco\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#. translators: plugin header field 'Name'
+#: wp-simple-delete-revisions.php:0
+#@ wpsdr-translate
+msgid "Simple Delete Revisions by b*web"
+msgstr ""
+
+#. translators: plugin header field 'PluginURI'
+#. translators: plugin header field 'AuthorURI'
+#: wp-simple-delete-revisions.php:0
+#@ wpsdr-translate
+msgid "http://b-website.com/"
+msgstr ""
+
+#. translators: plugin header field 'Author'
+#: wp-simple-delete-revisions.php:0
+#@ wpsdr-translate
+msgid "Brice CAPOBIANCO"
+msgstr ""
+
+#. translators: plugin header field 'Version'
+#: wp-simple-delete-revisions.php:0
+#@ wpsdr-translate
+msgid "1.0"
+msgstr ""
+
+#: wp-simple-delete-revisions.php:60
+#@ wpsdr-translate
+msgid "More b*web Plugins"
+msgstr "Plus de plugins b*web"
+
+#: wp-simple-delete-revisions.php:61
+#@ wpsdr-translate
+msgid "Donate"
+msgstr "Faire un don"
+
+#: wp-simple-delete-revisions.php:81
+#@ wpsdr-translate
+msgid "Purged"
+msgstr "Purgé"
+
+#: wp-simple-delete-revisions.php:85
+#@ wpsdr-translate
+msgid "There is no revisions for this post"
+msgstr "Il n'y a pas de révision pour ce contenu"
+
+#: wp-simple-delete-revisions.php:88
+#: wp-simple-delete-revisions.php:108
+#@ wpsdr-translate
+msgid "Something went wrong"
+msgstr "Quelque chose s'est mal passé"
+
+#: wp-simple-delete-revisions.php:91
+#@ wpsdr-translate
+msgid "You can't do this..."
+msgstr "Vous ne pouvez pas faire ça..."
+
+#: wp-simple-delete-revisions.php:108
+#@ wpsdr-translate
+msgid "Purging"
+msgstr "Purge"
+
+#: wp-simple-delete-revisions.php:108
+#@ wpsdr-translate
+msgid "Purge"
+msgstr "Purger"
+
+#. translators: plugin header field 'Description'
+#: wp-simple-delete-revisions.php:0
+#@ wpsdr-translate
+msgid "Add a discreet link in the post submitbox to let you purge the revisions of the current editing content via AJAX."
+msgstr ""
+
