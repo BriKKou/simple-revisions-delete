@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Simple Revisions Delete by b*web v1.0\n"
+"Project-Id-Version: Simple Revisions Delete by b*web v1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-01-03 14:10:13+0000\n"
+"PO-Revision-Date: 2015-01-06 22:59:55+0000\n"
 "Last-Translator: Brice Capobianco\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,74 +21,88 @@ msgstr ""
 "X-Textdomain-Support: yes"
 
 #. translators: plugin header field 'Name'
-#: simple-revisions-delete.php:0
+#: wp-simple-revisions-delete.php:0
 #@ wpsrd-translate
 msgid "Simple Revisions Delete by b*web"
 msgstr ""
 
 #. translators: plugin header field 'PluginURI'
 #. translators: plugin header field 'AuthorURI'
-#: simple-revisions-delete.php:0
+#: wp-simple-revisions-delete.php:0
 #@ wpsrd-translate
 msgid "http://b-website.com/"
 msgstr ""
 
 #. translators: plugin header field 'Author'
-#: simple-revisions-delete.php:0
+#: wp-simple-revisions-delete.php:0
 #@ wpsrd-translate
 msgid "Brice CAPOBIANCO"
 msgstr ""
 
-#. translators: plugin header field 'Version'
-#: simple-revisions-delete.php:0
-#@ wpsrd-translate
-msgid "1.0"
-msgstr ""
-
-#: simple-revisions-delete.php:60
+#: wp-simple-revisions-delete.php:37
 #@ wpsrd-translate
 msgid "More b*web Plugins"
 msgstr "Plus de plugins b*web"
 
-#: simple-revisions-delete.php:61
-#@ wpsrd-translate
-msgid "Donate"
-msgstr "Faire un don"
-
-#: simple-revisions-delete.php:81
+#: wp-simple-revisions-delete.php:189
 #@ wpsrd-translate
 msgid "Purged"
 msgstr "Purgé"
 
-#: simple-revisions-delete.php:85
+#: wp-simple-revisions-delete.php:193
 #@ wpsrd-translate
 msgid "There is no revisions for this post"
 msgstr "Il n'y a pas de révision pour ce contenu"
 
-#: simple-revisions-delete.php:88
-#: simple-revisions-delete.php:108
+#: wp-simple-revisions-delete.php:266
 #@ wpsrd-translate
 msgid "Something went wrong"
 msgstr "Quelque chose s'est mal passé"
 
-#: simple-revisions-delete.php:91
+#: wp-simple-revisions-delete.php:177
 #@ wpsrd-translate
 msgid "You can't do this..."
 msgstr "Vous ne pouvez pas faire ça..."
 
-#: simple-revisions-delete.php:108
+#: wp-simple-revisions-delete.php:266
 #@ wpsrd-translate
 msgid "Purging"
 msgstr "Purge"
 
-#: simple-revisions-delete.php:108
+#: wp-simple-revisions-delete.php:267
 #@ wpsrd-translate
 msgid "Purge"
 msgstr "Purger"
 
 #. translators: plugin header field 'Description'
-#: simple-revisions-delete.php:0
+#: wp-simple-revisions-delete.php:0
 #@ wpsrd-translate
 msgid "Add a discreet link in the post submitbox to let you purge the revisions of the current editing content via AJAX."
 msgstr "Ajoute un lien très discret dans la submit-box des postes lors de l'édition pour vous permettre de purger les révisions du contenu  via AJAX."
+
+#. translators: plugin header field 'Version'
+#: wp-simple-revisions-delete.php:0
+#@ wpsrd-translate
+msgid "1.1"
+msgstr ""
+
+#: wp-simple-revisions-delete.php:38
+#@ default
+msgid "Donate to this plugin &#187;"
+msgstr ""
+
+#: wp-simple-revisions-delete.php:69
+#@ default
+msgid "Dismiss"
+msgstr ""
+
+#: wp-simple-revisions-delete.php:75
+#@ wpsrd-translate
+msgid "Revisions are deactivated on this site, the plugin \"Simple Revisions Delete\" has no reason to be installed."
+msgstr "Les révisions sont désactivées sur ce site, l'extention \"Simple Revisions Delete\" n'a pas de raison d'être installée."
+
+#: wp-simple-revisions-delete.php:274
+#@ wpsrd-translate
+msgid "Purge revisions"
+msgstr "Purger les révisions"
 

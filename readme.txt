@@ -2,9 +2,9 @@
 Contributors: briKou
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z6YVM63739Y8
 Tags: admin, plugin, blog, developper, metabox, ajax, WordPress, UX, ui, jquery, revision, revisions, database, purge, cleanup, clean, tools, best, post, edition, editing, delete, remove
-Requires at least: 3.7
+Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -21,13 +21,14 @@ It is very lightweight, very simple to use, and just does the job!
 = How does it work? =
 
 The plugin adds a discreet link in the post submit box, next to the default revisions counter (see screenshots section).
-When you click on it, it will purge the appropriate post revisions via AJAX.
+When you click on it, it will purge the appropriate post revisions via AJAX (no JS is also support).
 
 
 NOTE: There is no admin page for this plugin - none is needed.
 
 = Languages =
 The plugin only bears a few sentences, but you can easily translate them through .MO & .PO files. Currently available languages are:
+
 * English
 * French
 
@@ -48,9 +49,12 @@ Become a translator and send me your translation! [Contact-me](http://b-website.
 == Frequently Asked Questions ==
 
 = Who can purge my posts revisions? =
-Only users who can edit a post can purge its revisions.
+Only users who can delete a post can purge its revisions.
 
-= Does it works with multisite? =
+= Does it work with multisite? =
+Yes.
+
+= Does it work if javascript is not activated? =
 Yes.
 
 
@@ -61,6 +65,13 @@ Yes.
 2. Done!
 
 == Changelog ==
+
+= 1.1 =
+* Better security.
+* Check if revisions are activated on plugina ativation
+* No JS is now supported
+* Remove inline CSS
+* Readme.txt update
 
 = 1.0 =
 * First release.
