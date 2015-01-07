@@ -5,10 +5,8 @@
  */	
 jQuery(document).ready(function($) {
 	//Ajax clear revisions
-	if ($('.misc-pub-revisions > b').length > 0){
-		if ($('.misc-pub-revisions > b').length > 0){
-			$('#wpsrd-clear-revisions').appendTo('.misc-pub-revisions').show();
-		}
+	if ($('.misc-pub-revisions b').length > 0){
+		$('#wpsrd-clear-revisions').appendTo('.misc-pub-revisions').show();
 		$('#wpsrd-clear-revisions a.once').live("click", function(event){
 			event.preventDefault();
 			$(this).removeClass('once').html($(this).data('action')).blur();
@@ -24,7 +22,7 @@ jQuery(document).ready(function($) {
 				success: function(response) {
 					if( response.success) {
 						$('#wpsrd-clear-revisions .wpsrd-loading, .misc-pub-revisions > a').remove();
-						$('.misc-pub-revisions > b').text('0');
+						$('.misc-pub-revisions b').text('0');
 						$('#wpsrd-clear-revisions a.wpsrd-link').addClass('sucess').html('<span class="dashicons dashicons-yes" style="color:#7ad03a;"></span> ' + response.data);
 					} else { 
 						$('#wpsrd-clear-revisions .wpsrd-loading').remove();
