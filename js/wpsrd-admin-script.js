@@ -21,6 +21,7 @@ jQuery(document).ready(function($) {
 				}, 
 				success: function(response) {
 					if( response.success) {
+						$('#revisionsdiv').slideUp();
 						$('#wpsrd-clear-revisions .wpsrd-loading, .misc-pub-revisions > a').remove();
 						$('.misc-pub-revisions b').text('0');
 						$('#wpsrd-clear-revisions a.wpsrd-link').addClass('sucess').html('<span class="dashicons dashicons-yes" style="color:#7ad03a;"></span> ' + response.data);

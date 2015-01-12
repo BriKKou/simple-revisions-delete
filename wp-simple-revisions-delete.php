@@ -5,7 +5,7 @@
  * Description: Add a discreet link in the post submitbox to let you purge the revisions of the current editing content via AJAX.
  * Author: Brice CAPOBIANCO
  * Author URI: http://b-website.com/
- * Version: 1.1
+ * Version: 1.1.1
  * Domain Path: /langs
  * Text Domain: wpsrd-translate
  */

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: admin, plugin, blog, developper, metabox, ajax, WordPress, UX, ui, jquery, revision, revisions, database, purge, cleanup, clean, tools, best, post, edition, editing, delete, remove
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 1.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -65,6 +65,9 @@ Yes.
 2. Done!
 
 == Changelog ==
+
+= 1.1.1 =
+* Hide revisions metabox on revisions purge success.
 
 = 1.1 =
 * Better security.
