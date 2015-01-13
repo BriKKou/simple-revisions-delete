@@ -71,10 +71,11 @@ Yes.
 
 = 1.1 =
 * Better security.
-* Check if revisions are activated on plugina ativation
+* Check if revisions are activated on plugin activation
 * No JS is now supported
 * Remove inline CSS
 * Readme.txt update
+* Special thanks to [Julio Potier](https://profiles.wordpress.org/juliobox "Julio Potier") for his help in improving the plugin :)
 
 = 1.0 =
 * First release.

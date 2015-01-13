@@ -15,7 +15,7 @@
  * SECURITY : Exit if accessed directly
 ***************************************************************/
 if ( !defined( 'ABSPATH' ) ) {
-	exit;
+	die( 'Direct acces not allowed!' );
 }
 
 
