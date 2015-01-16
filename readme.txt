@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: admin, plugin, blog, developper, metabox, ajax, WordPress, UX, ui, jquery, revision, revisions, database, purge, cleanup, clean, tools, best, post, edition, editing, delete, remove, bulk, bulk-action, nojs, CPT, custom post types, post type
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 1.2
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -53,6 +53,9 @@ Become a translator and send me your translation! [Contact-me](http://b-website.
 
 **Please ask for help or report bugs if anything goes wrong. It is the best way to make the community benefit!**
 
+= Known Issue =
+If you are using W3 Total Cache plugin or other caching plugins which use Object Caching, you may not see any notification after a bulk action. 
+To prevent this, turn off the **Object caching** service or juste refer to the page URL to see how much revisions have been deleted (rev_purged=XX).
 
 == Installation ==
 
@@ -81,9 +84,13 @@ Yes, but only when editing a post, not with the bulk action.
 
 == Changelog ==
 
+= 1.2.1 =
+* URL parameter added on bulk action 
+* Readme.txt update for W3 Total Cache issue
+
 = 1.2 =
 * NEW FEATURE: Bulk revisions delete 
-* Plugin files refactoring
+* Plugin file refactoring
 * Custom post type's support with the new **wpsrd_post_types_list** hook
 * Readme.txt update
 

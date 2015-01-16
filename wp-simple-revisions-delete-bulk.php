@@ -59,7 +59,7 @@ if ( empty( $_REQUEST['post'] ) )
 		$post_ids = array_map( 'intval', $_REQUEST['post'] );
 		
 		foreach ( $post_ids as $post_id ) {
-			
+
 			$postTypeList = wpsrd_post_types_default();
 
 			if ( current_user_can( 'delete_post', $post_id ) && in_array( get_post_type( $post_id ), $postTypeList ) ) {
@@ -119,7 +119,7 @@ if ( empty( $_REQUEST['post'] ) )
 		}
 		
 		//Store the notice(s) for the redirection
-		set_transient('settings_errors', get_settings_errors(), 30);				
+		set_transient( 'settings_errors', get_settings_errors(), 30 );				
 
 		//cleanup the arguments
 		$sendback = remove_query_arg( array( 'exported', 'untrashed', 'deleted', 'ids' ), wp_get_referer() );
@@ -129,7 +129,7 @@ if ( empty( $_REQUEST['post'] ) )
 
 		//retrieve the pagination
 		$pagenum = $wp_list_table->get_pagenum();
-		$sendback = add_query_arg( array( 'paged' => $pagenum ), $sendback );
+		$sendback = add_query_arg( array( 'paged' => $pagenum, 'rev_purged' => $revisions_count ), $sendback );
 		
 		wp_safe_redirect( $sendback );
 		exit();
