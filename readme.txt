@@ -1,30 +1,44 @@
 === Simple Revisions Delete ===
 Contributors: briKou
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z6YVM63739Y8
-Tags: admin, plugin, blog, developper, metabox, ajax, WordPress, UX, ui, jquery, revision, revisions, database, purge, cleanup, clean, tools, best, post, edition, editing, delete, remove
+Tags: admin, plugin, blog, developper, metabox, ajax, WordPress, UX, ui, jquery, revision, revisions, database, purge, cleanup, clean, tools, best, post, edition, editing, delete, remove, bulk, bulk-action, nojs, CPT, custom post types, post type
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 1.1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
-Simple Revisions Delete add a discreet link within a post submit box to let you purge (delete) its revisions via AJAX.
+Simple Revisions Delete add a discreet link within a post submit box to let you purge (delete) its revisions via AJAX. Bulk action is also available.
 
 
 == Description ==
 
 = What does it do? =
 It helps you keep a clean database by removing unnecessary posts revisions. Unlike other similar plugins, it lets you delete only specific posts revisions, not all your site revisions at once.
-The plugin is perfectly integrated in the WordPress post edition page, and uses native core functions to safely delete revisions.
+The plugin is perfectly integrated in the WordPress back-end, and uses native core functions to safely delete revisions.
 It is very lightweight, very simple to use, and just does the job!
 
 = How does it work? =
 
 The plugin adds a discreet link in the post submit box, next to the default revisions counter (see screenshots section).
 When you click on it, it will purge the appropriate post revisions via AJAX (no JS is also support).
+It also add a new bulk action option in the post/page row view to let you purge revisions of multiple posts at once.
 
 
 NOTE: There is no admin page for this plugin - none is needed.
+
+
+= Post Types support =
+The default supported post types are **post** and **page**, but you can easily add custom post types or remove default post types with the following hook:
+`
+function bweb_wpsrd_add_post_types( $postTypes ){
+	$postTypes[] = 'additional-cpt';
+	$postTypes[] = 'another-cpt';
+	return $postTypes;
+}
+add_filter( 'wpsrd_post_types_list', 'bweb_wpsrd_add_post_types' );
+`
+
 
 = Languages =
 The plugin only bears a few sentences, but you can easily translate them through .MO & .PO files. Currently available languages are:
@@ -55,7 +69,7 @@ Only users who can delete a post can purge its revisions.
 Yes.
 
 = Does it work if javascript is not activated? =
-Yes.
+Yes, but only when editing a post, not with the bulk action.
 
 
 == Screenshots ==
@@ -63,8 +77,15 @@ Yes.
 1. The link location
 2. Processing...
 2. Done!
+3. Bulk action
 
 == Changelog ==
+
+= 1.2 =
+* NEW FEATURE: Bulk revisions delete 
+* Plugin files refactoring
+* Custom post type's support with the new **wpsrd_post_types_list** hook
+* Readme.txt update
 
 = 1.1.1 =
 * Hide revisions metabox on revisions purge success.
