@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: admin, plugin, blog, developper, metabox, ajax, WordPress, UX, ui, jquery, revision, revisions, database, purge, cleanup, clean, tools, best, post, edition, editing, delete, remove, bulk, bulk-action, nojs, CPT, custom post types, post type
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 1.3
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -23,6 +23,8 @@ It is very lightweight, very simple to use, and just does the job!
 The plugin adds a discreet link in the post submit box, next to the default revisions counter (see screenshots section).
 When you click on it, it will purge the appropriate post revisions via AJAX (no JS is also support).
 It also add a new bulk action option in the post/page row view to let you purge revisions of multiple posts at once.
+
+Since v1.3 you can delete a single revision at once (see screenshots).
 
 [See plugin's page](http://b-website.com/simple-revisions-delete-free-wordpress-plugin "Plugin's page")
 
@@ -85,10 +87,15 @@ Yes, but only when editing a post, not with the bulk action.
 
 1. The link location
 2. Processing...
-2. Done!
-3. Bulk action
+3. Done!
+4. Bulk action
+5. Single revision delete
 
 == Changelog ==
+
+= 1.3.1 =
+* New screenshot added
+* Readme.txt update
 
 = 1.3 =
 * Minor PHP fixes
