@@ -9,7 +9,7 @@
  * SECURITY : Exit if accessed directly
 ***************************************************************/
 if ( !defined( 'ABSPATH' ) ) {
-	die( 'Direct acces not allowed!' );
+	die( 'Direct access not allowed!' );
 }
 
 
@@ -19,9 +19,6 @@ if ( !defined( 'ABSPATH' ) ) {
 function wpsrd_purge_select_bulk_action() {
 	global $post_type;
 	
-	//Check if user can delete revisions
-	/*if ( !current_user_can( 'delete_post' ) ) //Does not work -- missing args
-		return;*/
 	$postTypeList = wpsrd_post_types_default();
 	
 	if( in_array( $post_type, $postTypeList ) ) {
@@ -51,9 +48,6 @@ if ( empty( $_REQUEST['post'] ) )
 	check_admin_referer( 'bulk-posts' );
 	
 	if ( 'wpsrd-purge' == $action ) {
-
-		/*if ( ! current_user_can( 'delete_post' ) ) //Does not work -- missing args
-			wp_die( __( 'You can\'t do this...', 'wpsrd-translate' ) );*/
 		
 		$revisions_count = 0;
 		$post_ids = array_map( 'intval', $_REQUEST['post'] );
@@ -62,7 +56,7 @@ if ( empty( $_REQUEST['post'] ) )
 
 			$postTypeList = wpsrd_post_types_default();
 
-			if ( current_user_can( 'delete_post', $post_id ) && in_array( get_post_type( $post_id ), $postTypeList ) ) {
+			if ( current_user_can( apply_filters( 'wpsrd_capability', 'delete_post' ), $post_id ) && in_array( get_post_type( $post_id ), $postTypeList ) ) {
 
 				$revisions = wp_get_post_revisions( $post_id );
 				
@@ -70,13 +64,13 @@ if ( empty( $_REQUEST['post'] ) )
 				if( isset( $revisions ) && !empty ( $revisions ) ) {
 					
 					foreach ( $revisions as $revision ) {
-						$revisions_count++;
 						$revDelete = wp_delete_post_revision( $revision );
 						
 						if( is_wp_error( $revDelete ) ) {
 							//Extra error notice if WP error return something
-							$outputWpError = array( 'success' => 'error', 'data' => $revDelete->get_error_message() );
+							$outputWpError = $revDelete->get_error_message();
 						} else {
+							$revisions_count++;
 							$output = array( 
 								'success' => 'success', 'data' => sprintf( _n( '1 revision has been deleted', '%s revisions have been deleted', $revisions_count, 'wpsrd-translate' ), $revisions_count ) . 
 								'&nbsp;&nbsp;&nbsp;<i style="font-weight:normal">' . __( 'Note: You can only purge revisions for the posts you\'re allowed to delete', 'wpsrd-translate' ) . '</i>'
@@ -103,8 +97,8 @@ if ( empty( $_REQUEST['post'] ) )
 			add_settings_error(
 				'wpsrd-admin-notice',
 				'wpsrd_notice_WP_error',
-				$outputWpError[ 'data' ],
-				( $outputWpError[ 'success' ] == 'success'  ? 'updated' : 'error' )
+				$outputWpError,
+				'error'
 			);
 		}
 		
@@ -119,7 +113,7 @@ if ( empty( $_REQUEST['post'] ) )
 		}
 		
 		//Store the notice(s) for the redirection
-		set_transient( 'settings_errors', get_settings_errors(), 30 );				
+		set_transient( 'wpsrd_settings_errors', get_settings_errors(), 30 );				
 
 		//cleanup the arguments
 		$sendback = remove_query_arg( array( 'exported', 'untrashed', 'deleted', 'ids' ), wp_get_referer() );

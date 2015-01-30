@@ -3,8 +3,68 @@
  * SECURITY : Exit if accessed directly
 ***************************************************************/
 if ( !defined( 'ABSPATH' ) ) {
-	die( 'Direct acces not allowed!' );
+	die( 'Direct access not allowed!' );
 }
+
+
+/***************************************************************
+ * Print Style in admin header
+ ***************************************************************/
+function wpsrd_add_admin_style() {
+	echo '
+	<style>
+		#wpsrd-clear-revisions,
+		.wpsrd-no-js {
+			display:none;
+		}
+		#wpsrd-clear-revisions .wpsrd-loading { 
+			display:none; 
+			background-image: url(' . admin_url('images/spinner-2x.gif') . '); 
+			display: none; 
+			width: 18px; 
+			height: 18px; 
+			background-size: cover; 
+			margin: 0 0 -5px 4px;
+		}
+		#wpsrd-clear-revisions .wpsrd-link.sucess { 
+			color: #444;
+			font-weight: 600;
+		}
+		#wpsrd-clear-revisions .wpsrd-link.error { 
+			display: block
+			color: #a00;
+			font-weight: normal;
+		}
+		.wpsrd-no-js:before {
+			color: #888;
+			content: "\f182";
+			font: 400 20px/1 dashicons;
+			speak: none;
+			display: inline-block;
+			padding: 0 2px 0 0;
+			top: 0;
+			left: -1px;
+			position: relative;
+			vertical-align: top;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			text-decoration: none!important;
+		}
+		.wp-core-ui .button.action.wpsrd-btn {
+			margin-left: 10px;
+		}
+	</style>
+	<noscript>
+		<style>
+			.wpsrd-no-js {
+				display:block;
+			}
+		</style>
+	</noscript>
+	';
+}
+add_action( 'admin_print_styles-post-new.php', 'wpsrd_add_admin_style');
+add_action( 'admin_print_styles-post.php', 'wpsrd_add_admin_style');
 
 
 /***************************************************************
@@ -86,18 +146,43 @@ function wpsrd_post_types_default(){
 
 	
 /***************************************************************
+ * Hack to prevent 'W3 Total Cache' caching the notice transient
+ * Thanks to @doublesharp http://wordpress.stackexchange.com/a/123537
+ ***************************************************************/
+function wpsrd_disable_linked_in_cached( $value=null ){
+    global $_wp_using_ext_object_cache;
+    $_wp_using_ext_object_cache_prev = $_wp_using_ext_object_cache;
+    $_wp_using_ext_object_cache = false;
+    return $value;
+}
+add_filter( 'pre_set_transient_wpsrd_settings_errors', 'wpsrd_disable_linked_in_cached' );
+add_filter( 'pre_transient_wpsrd_settings_errors', 'wpsrd_disable_linked_in_cached' );
+add_action( 'delete_transient_wpsrd_settings_errors', 'wpsrd_disable_linked_in_cached' );
+
+function wpsrd_enable_linked_in_cached( $value=null ){
+    global $_wp_using_ext_object_cache;
+    $_wp_using_ext_object_cache = $_wp_using_ext_object_cache_prev;
+    return $value;
+}
+add_action( 'set_transient_wpsrd_settings_errors', 'wpsrd_enable_linked_in_cached' );
+add_filter( 'transient_wpsrd_settings_errors', 'wpsrd_enable_linked_in_cached' );
+add_action( 'deleted_transient_wpsrd_settings_errors', 'wpsrd_enable_linked_in_cached' );
+
+
+/***************************************************************
  * Display admin notice after purging revisions
  ***************************************************************/
 function wpsrd_notice_display(){
+	
 	// Exit if no notice
-	if ( ! ( $notices = get_transient( 'settings_errors' ) ) )
+	if ( !( $notices = get_transient( 'wpsrd_settings_errors' ) ) )
 		return;
-
+		
 	$noticeCode = array( 'wpsrd_notice', 'wpsrd_notice_WP_error' );
-
+	
 	//Rebuild the notice
-	foreach ( $notices as $notice ) {
-		if( in_array( $notice[ 'code' ] , $noticeCode ) ) {
+	foreach ( (array) $notices as $notice ) {
+		if( isset( $notice[ 'code' ] ) && in_array( $notice[ 'code' ] , $noticeCode ) ) {
 			add_settings_error(
 				$notice[ 'setting' ],
 				$notice[ 'code' ],
@@ -106,11 +191,12 @@ function wpsrd_notice_display(){
 			);
 		}
 	}
-	
+
 	//Display the notice
-	settings_errors( 'wpsrd-admin-notice' );
+	settings_errors( $notice[ 'setting' ] );
 	
 	// Remove the transient after displaying the notice
-	delete_transient( 'settings_errors' );
+	delete_transient( 'wpsrd_settings_errors' );
+	
 }
 add_action( 'admin_notices', 'wpsrd_notice_display', 0 );

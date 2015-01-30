@@ -5,7 +5,7 @@
  * Description: Simple Revisions Delete add a discreet link within a post submit box to let you purge (delete) its revisions via AJAX. Bulk action is also available.
  * Author: Brice CAPOBIANCO
  * Author URI: http://b-website.com/
- * Version: 1.2.1
+ * Version: 1.3
  * Domain Path: /langs
  * Text Domain: wpsrd-translate
  */
@@ -15,7 +15,7 @@
  * SECURITY : Exit if accessed directly
 ***************************************************************/
 if ( !defined( 'ABSPATH' ) ) {
-	die( 'Direct acces not allowed!' );
+	die( 'Direct access not allowed!' );
 }
 
 
@@ -32,7 +32,7 @@ add_action( 'init', 'wpsrd_load_textdomain' );
 /***************************************************************
  * Load plugin files
  ***************************************************************/
-$wppicFiles = array( 'functions','bulk','single' );
+$wppicFiles = array( 'functions', 'bulk', 'single', 'once' );
 foreach( $wppicFiles as $wppicFile ){
 	require_once( plugin_dir_path( __FILE__ ) . 'wp-simple-revisions-delete-' . $wppicFile . '.php' );
 }
