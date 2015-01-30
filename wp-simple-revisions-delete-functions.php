@@ -130,7 +130,7 @@ add_action( 'admin_post_wpsrd_norev_dismiss', 'wpsrd_norev_dismiss' );
  ***************************************************************/
 function wpsrd_add_admin_scripts( $page ) {
     if ( $page == 'post-new.php' || $page == 'post.php' ) {
-		wp_enqueue_script( 'wpsrd_admin_js', plugin_dir_url( __FILE__ ) . 'js/wpsrd-admin-script.js', array( 'jquery' ), '1.2' );
+		wp_enqueue_script( 'wpsrd_admin_js', plugin_dir_url( __FILE__ ) . 'js/wpsrd-admin-script.js', array( 'jquery' ), '1.3.1' );
     }
 }
 add_action( 'admin_enqueue_scripts', 'wpsrd_add_admin_scripts', 10, 1 );
