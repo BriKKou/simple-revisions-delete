@@ -154,8 +154,8 @@ function wpsrd_disable_linked_in_cached( $value=null ){
 	if ( !empty( $_wp_using_ext_object_cache ) ){
 		$_wp_using_ext_object_cache_prev = $_wp_using_ext_object_cache;
 		$_wp_using_ext_object_cache = false;
-		return $value;
 	}
+	return $value;
 }
 add_filter( 'pre_set_transient_wpsrd_settings_errors', 'wpsrd_disable_linked_in_cached' );
 add_filter( 'pre_transient_wpsrd_settings_errors', 'wpsrd_disable_linked_in_cached' );
@@ -165,8 +165,8 @@ function wpsrd_enable_linked_in_cached( $value=null ){
     global $_wp_using_ext_object_cache;
 	if ( !empty( $_wp_using_ext_object_cache ) ){
 		$_wp_using_ext_object_cache = $_wp_using_ext_object_cache_prev;
-		return $value;
 	}
+	return $value;
 }
 add_action( 'set_transient_wpsrd_settings_errors', 'wpsrd_enable_linked_in_cached' );
 add_filter( 'transient_wpsrd_settings_errors', 'wpsrd_enable_linked_in_cached' );
