@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: admin, plugin, blog, developper, metabox, ajax, WordPress, UX, ui, jquery, revision, revisions, database, purge, cleanup, clean, tools, best, post, edition, editing, delete, remove, bulk, bulk-action, nojs, CPT, custom post types, post type
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 1.3.3
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -56,6 +56,7 @@ The plugin only bears a few sentences, but you can easily translate them through
 
 * English
 * French
+* Deutsch - Thanks to [mallard66](https://profiles.wordpress.org/mallard66 "mallard66")
 
 Become a translator and send me your translation! [Contact-me](http://b-website.com/contact "Contact")
 
@@ -92,6 +93,10 @@ Yes, but only when editing a post, not with the bulk action.
 5. Single revision delete
 
 == Changelog ==
+
+= 1.4 =
+* Adding conditionnal extra notice on bulk delete
+* Deutsch translation by [mallard66](https://profiles.wordpress.org/mallard66 "mallard66")
 
 = 1.3.3 =
 * Fixe Transients filtering issue

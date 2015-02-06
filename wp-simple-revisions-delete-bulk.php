@@ -34,6 +34,7 @@ function wpsrd_purge_select_bulk_action() {
 add_action('admin_footer-edit.php', 'wpsrd_purge_select_bulk_action');
 
 
+
 /***************************************************************
  * Add the purge option in the bulk select
 ***************************************************************/
@@ -55,8 +56,14 @@ if ( empty( $_REQUEST['post'] ) )
 		foreach ( $post_ids as $post_id ) {
 
 			$postTypeList = wpsrd_post_types_default();
+			$userCapability = apply_filters( 'wpsrd_capability', 'delete_post' );
 
-			if ( current_user_can( apply_filters( 'wpsrd_capability', 'delete_post' ), $post_id ) && in_array( get_post_type( $post_id ), $postTypeList ) ) {
+			$extraNotice = '';
+			if ( $userCapability == 'delete_post' ){
+				$extraNotice = '&nbsp;&nbsp;&nbsp;<i style="font-weight:normal">' . __( 'Note: You can only purge revisions for the posts you\'re allowed to delete', 'wpsrd-translate' ) . '</i>';
+			}
+
+			if ( current_user_can( $userCapability, $post_id ) && in_array( get_post_type( $post_id ), $postTypeList ) ) {
 
 				$revisions = wp_get_post_revisions( $post_id );
 				
@@ -71,9 +78,9 @@ if ( empty( $_REQUEST['post'] ) )
 							$outputWpError = $revDelete->get_error_message();
 						} else {
 							$revisions_count++;
+							
 							$output = array( 
-								'success' => 'success', 'data' => sprintf( _n( '1 revision has been deleted', '%s revisions have been deleted', $revisions_count, 'wpsrd-translate' ), $revisions_count ) . 
-								'&nbsp;&nbsp;&nbsp;<i style="font-weight:normal">' . __( 'Note: You can only purge revisions for the posts you\'re allowed to delete', 'wpsrd-translate' ) . '</i>'
+								'success' => 'success', 'data' => sprintf( _n( '1 revision has been deleted', '%s revisions have been deleted', $revisions_count, 'wpsrd-translate' ), $revisions_count ) . $extraNotice								
 							);
 						}
 						
@@ -87,8 +94,7 @@ if ( empty( $_REQUEST['post'] ) )
 		
 		if ( $revisions_count == 0 ){
 			$output = array( 
-				'success' => 'error', 'data' => __( 'No revision to delete', 'wpsrd-translate' ) . 
-				'&nbsp;&nbsp;&nbsp;<i style="font-weight:normal">' . __( 'Note: You can only purge revisions for the posts you\'re allowed to delete', 'wpsrd-translate' ) . '</i>'
+				'success' => 'error', 'data' => __( 'No revision to delete', 'wpsrd-translate' ) . $extraNotice
 			);
 		}
 		
