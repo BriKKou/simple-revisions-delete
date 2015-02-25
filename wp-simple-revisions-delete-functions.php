@@ -17,7 +17,7 @@ function wpsrd_add_admin_style() {
 		.wpsrd-no-js {
 			display:none;
 		}
-		#wpsrd-clear-revisions .wpsrd-loading { 
+		.wpsrd-loading { 
 			display:none; 
 			background-image: url(' . admin_url('images/spinner-2x.gif') . '); 
 			display: none; 
@@ -130,7 +130,7 @@ add_action( 'admin_post_wpsrd_norev_dismiss', 'wpsrd_norev_dismiss' );
  ***************************************************************/
 function wpsrd_add_admin_scripts( $page ) {
     if ( $page == 'post-new.php' || $page == 'post.php' ) {
-		wp_enqueue_script( 'wpsrd_admin_js', plugin_dir_url( __FILE__ ) . 'js/wpsrd-admin-script.js', array( 'jquery' ), '1.4' );
+		wp_enqueue_script( 'wpsrd_admin_js', plugin_dir_url( __FILE__ ) . 'js/wpsrd-admin-script.js', array( 'jquery' ), '1.4.1' );
     }
 }
 add_action( 'admin_enqueue_scripts', 'wpsrd_add_admin_scripts', 10, 1 );
@@ -150,11 +150,16 @@ function wpsrd_post_types_default(){
  * Thanks to @doublesharp http://wordpress.stackexchange.com/a/123537
  ***************************************************************/
 function wpsrd_disable_linked_in_cached( $value=null ){
-    global $_wp_using_ext_object_cache;
-	if ( !empty( $_wp_using_ext_object_cache ) ){
-		$_wp_using_ext_object_cache_prev = $_wp_using_ext_object_cache;
-		$_wp_using_ext_object_cache = false;
-	}
+	if( is_admin() ) {
+		global $pagenow;
+		if( 'edit.php' == $pagenow ) {
+			global $_wp_using_ext_object_cache;
+			if ( !empty( $_wp_using_ext_object_cache ) ){
+				$_wp_using_ext_object_cache_prev = $_wp_using_ext_object_cache;
+				$_wp_using_ext_object_cache = false;
+			}
+		}
+	}	
 	return $value;
 }
 add_filter( 'pre_set_transient_wpsrd_settings_errors', 'wpsrd_disable_linked_in_cached' );
@@ -162,9 +167,14 @@ add_filter( 'pre_transient_wpsrd_settings_errors', 'wpsrd_disable_linked_in_cach
 add_action( 'delete_transient_wpsrd_settings_errors', 'wpsrd_disable_linked_in_cached' );
 
 function wpsrd_enable_linked_in_cached( $value=null ){
-    global $_wp_using_ext_object_cache;
-	if ( !empty( $_wp_using_ext_object_cache ) ){
-		$_wp_using_ext_object_cache = $_wp_using_ext_object_cache_prev;
+	if( is_admin() ) {
+		global $pagenow;
+		if( 'edit.php' == $pagenow ) {
+			global $_wp_using_ext_object_cache;
+			if ( !empty( $_wp_using_ext_object_cache ) ){
+				$_wp_using_ext_object_cache = $_wp_using_ext_object_cache_prev;
+			}
+		}
 	}
 	return $value;
 }

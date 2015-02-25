@@ -30,7 +30,7 @@ function wpsrd_purge_revisions_button() {
 		$content .= '<a href="#clear-revisions" class="wpsrd-link once" data-nonce="' . $nonce . '" data-action="' . esc_attr__( 'Purging', 'wpsrd-translate' ) . '" data-error="' . esc_attr__( 'Something went wrong', 'wpsrd-translate' ) . '">';
 		$content .= __( 'Purge', 'wpsrd-translate' );
 		$content .= '</a>';
-		$content .= '<span class="wpsrd-loading" ></span>';
+		$content .= '<span class="wpsrd-loading"></span>';
 		$content .= '</span>';
 	
 		$content .= '<div class="misc-pub-section wpsrd-no-js">';

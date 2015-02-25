@@ -41,7 +41,7 @@ jQuery(document).ready(function($) {
 		});
 	}
 	//Ajax single revision delete
-	if ($( '#revisionsdiv' ).length > 0 && $( '#wpsrd-btn-container' ).length){
+	if ($( '.post-php #revisionsdiv' ).length > 0 && $( '#wpsrd-btn-container' ).length){
 
 		$( '#wpsrd-btn-container .wpsrd-btn' ).clone().appendTo( '#revisionsdiv .post-revisions li' );
 		$.each( $( '#revisionsdiv .wpsrd-btn' ), function() {
@@ -53,7 +53,8 @@ jQuery(document).ready(function($) {
 		$( '#revisionsdiv .wpsrd-btn.once' ).live("click", function(event){
 			event.preventDefault();
 			var elem = $(this);
-			elem.removeClass( 'once button-primary' );
+			elem.removeClass( 'once' );
+			$('<span class="wpsrd-loading" style="display:inline-block"></span>').insertAfter( elem );
 
 			$.ajax({
 				url: ajaxurl, 
@@ -65,6 +66,7 @@ jQuery(document).ready(function($) {
 				success: function(response) {
 					elem.hide();
 					var count = $( '.misc-pub-revisions b' ).text();
+					elem.parent( 'li' ).find( '.wpsrd-loading' ).hide();
 					if( response.success) {
 						count = count - 1;
 						$( '.misc-pub-revisions b' ).text( count );
@@ -82,6 +84,7 @@ jQuery(document).ready(function($) {
 					}, 3500);
 				},
 				error: function(response){
+					elem.parent( 'li' ).find( '.wpsrd-loading' ).hide();
 					elem.parent( 'li' ).addClass( 'error' ).append( '<b> ' + $( '#wpsrd-clear-revisions a' ).data( 'error' ) + '</b>' );
 					elem.remove();
 				}

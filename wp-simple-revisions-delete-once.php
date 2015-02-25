@@ -11,14 +11,16 @@ if ( !defined( 'ABSPATH' ) ) {
  * Insert delete button if user can delete revisions
 ***************************************************************/
 function wpsrd_single_revision_delete_button() {
-	global $post;
-	$postTypeList = wpsrd_post_types_default();
-	
-	if ( !isset( $post->ID ) )
-		return;
+	global $post, $pagenow;
+	if( 'post.php' == $pagenow ) {
+		$postTypeList = wpsrd_post_types_default();
 		
-	if ( current_user_can( apply_filters( 'wpsrd_capability', 'delete_post' ), $post->ID ) && in_array( get_post_type( $post->ID ), $postTypeList ) ) {
-		echo '<div id="wpsrd-btn-container"><span class="button button-primary action wpsrd-btn once">' . __( 'Delete' ) . '</a></div>';
+		if ( !isset( $post->ID ) )
+			return;
+			
+		if ( current_user_can( apply_filters( 'wpsrd_capability', 'delete_post' ), $post->ID ) && in_array( get_post_type( $post->ID ), $postTypeList ) ) {
+			echo '<div id="wpsrd-btn-container" style="display:none"><span class="button action wpsrd-btn once">' . __( 'Delete' ) . '</span></div>';
+		}
 	}
 }
 add_action('admin_footer', 'wpsrd_single_revision_delete_button');

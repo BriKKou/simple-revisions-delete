@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: admin, plugin, blog, developper, metabox, ajax, WordPress, UX, ui, jquery, revision, revisions, database, purge, cleanup, clean, tools, best, post, edition, editing, delete, remove, bulk, bulk-action, nojs, CPT, custom post types, post type
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 1.4
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -93,6 +93,13 @@ Yes, but only when editing a post, not with the bulk action.
 5. Single revision delete
 
 == Changelog ==
+
+= 1.4.1 =
+* Fix a bug when W3 Total Cache is activated and plugins updates are available
+* Fix a bug where delete button appears in the admin bottom
+* Minor JS improvement
+* Loader added during single revision deletion
+* Change the default primary button (blue) to normal button (grey) for UX purpose
 
 = 1.4 =
 * Adding conditionnal extra notice on bulk delete
