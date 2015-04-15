@@ -19,7 +19,7 @@ function wpsrd_single_revision_delete_button() {
 			return;
 			
 		if ( current_user_can( apply_filters( 'wpsrd_capability', 'delete_post' ), $post->ID ) && in_array( get_post_type( $post->ID ), $postTypeList ) ) {
-			echo '<div id="wpsrd-btn-container" style="display:none"><span class="button action wpsrd-btn once">' . __( 'Delete' ) . '</span></div>';
+			echo '<div id="wpsrd-btn-container" style="display:none"><a href="#delete-revision" class="action wpsrd-btn once">' . __( 'Delete' ) . '</a></div>';
 		}
 	}
 }

@@ -5,10 +5,26 @@
  * Description: Simple Revisions Delete add a discreet link within a post submit box to let you purge (delete) its revisions via AJAX. Bulk action is also available.
  * Author: Brice CAPOBIANCO
  * Author URI: http://b-website.com/
- * Version: 1.4.1
+ * Version: 1.4.2
  * Domain Path: /langs
  * Text Domain: wpsrd-translate
  */
+
+/*  Copyright 2015  Brice CAPOBIANCO  (contact : http://b-website.com/contact)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License, version 2, as 
+    published by the Free Software Foundation.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
 
 
 /***************************************************************

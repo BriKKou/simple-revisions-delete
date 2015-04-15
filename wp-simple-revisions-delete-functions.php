@@ -50,7 +50,8 @@ function wpsrd_add_admin_style() {
 			-moz-osx-font-smoothing: grayscale;
 			text-decoration: none!important;
 		}
-		.wp-core-ui .button.action.wpsrd-btn {
+		.wp-core-ui .action.wpsrd-btn {
+			display: inline-block;
 			margin-left: 10px;
 		}
 	</style>
