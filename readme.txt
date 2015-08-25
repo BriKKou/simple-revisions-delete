@@ -3,8 +3,8 @@ Contributors: briKou
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z6YVM63739Y8
 Tags: admin, plugin, blog, developper, metabox, ajax, WordPress, UX, ui, jquery, revision, revisions, database, purge, cleanup, clean, tools, best, post, edition, editing, delete, remove, bulk, bulk-action, nojs, CPT, custom post types, post type
 Requires at least: 3.5
-Tested up to: 4.2
-Stable tag: 1.4.3
+Tested up to: 4.3
+Stable tag: 1.4.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -94,6 +94,9 @@ Yes, but only when editing a post, not with the bulk action.
 5. Single revision delete
 
 == Changelog ==
+
+= 1.4.4 =
+* Tested on WP 4.3 with success!
 
 = 1.4.3 =
 * Dutch translation by [jondor](https://profiles.wordpress.org/jondor "jondor")
