@@ -4,11 +4,11 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: admin, plugin, blog, developper, metabox, ajax, WordPress, UX, ui, jquery, revision, revisions, database, purge, cleanup, clean, tools, best, post, edition, editing, delete, remove, bulk, bulk-action, nojs, CPT, custom post types, post type
 Requires at least: 3.5
 Tested up to: 4.3
-Stable tag: 1.4.4
+Stable tag: 1.4.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
-Simple Revisions Delete add a discreet link within a post submit box to let you purge (delete) its revisions via AJAX. Bulk action is also available.
+Simple Revisions Delete adds a discreet link within a post submit box to let you purge (delete) its revisions via AJAX. Bulk actions also available.
 
 
 == Description ==
@@ -26,7 +26,7 @@ It also add a new bulk action option in the post/page row view to let you purge 
 
 Since v1.3 you can delete a single revision at once (see screenshots).
 
-[See plugin's page](http://b-website.com/simple-revisions-delete-free-wordpress-plugin "Plugin's page")
+[See plugin page](http://b-website.com/simple-revisions-delete-free-wordpress-plugin "Plugin page")
 
 NOTE: There is no admin page for this plugin - none is needed.
 
@@ -41,6 +41,7 @@ function bweb_wpsrd_add_post_types( $postTypes ){
 }
 add_filter( 'wpsrd_post_types_list', 'bweb_wpsrd_add_post_types' );
 `
+See CODEX to add support to all CPTs: https://codex.wordpress.org/Function_Reference/get_post_types
 
 = Custom user capability =
 The default capability to purge or remove rivisions is delete_post, but you can override this with the following hook:
@@ -94,6 +95,10 @@ Yes, but only when editing a post, not with the bulk action.
 5. Single revision delete
 
 == Changelog ==
+
+= 1.4.5 =
+* Better respect WordPress Coding standards
+* readme.txt update
 
 = 1.4.4 =
 * Tested on WP 4.3 with success!

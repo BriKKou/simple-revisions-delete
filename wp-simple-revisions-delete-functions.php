@@ -74,7 +74,7 @@ add_action( 'admin_print_styles-post.php', 'wpsrd_add_admin_style');
 function wpsrd_norev_check(){
 	if ( !WP_POST_REVISIONS ){
 		//Keep in memory if revisions are deactivated
-		set_transient('wpsrd_norev', true, 0);
+		set_transient( 'wpsrd_norev', true, 0 );
 	}
 }
 register_activation_hook( __FILE__, 'wpsrd_norev_check' );
@@ -105,7 +105,7 @@ function wpsrd_norev_notice(){
 		);
 
 		//Display the notice
-		settings_errors('wpsrd-admin-norev');
+		settings_errors( 'wpsrd-admin-norev' );
 	}
 }
 add_action( 'admin_notices', 'wpsrd_norev_notice' );

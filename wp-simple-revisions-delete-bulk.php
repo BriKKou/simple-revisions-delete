@@ -40,7 +40,7 @@ add_action('admin_footer-edit.php', 'wpsrd_purge_select_bulk_action');
 ***************************************************************/
 function wpsrd_purge_bulk_action() {
  
-if ( empty( $_REQUEST['post'] ) )
+if ( empty( $_REQUEST[ 'post' ] ) )
 	return;
 	
 	$wp_list_table = _get_list_table( 'WP_Posts_List_Table' );
@@ -51,7 +51,7 @@ if ( empty( $_REQUEST['post'] ) )
 	if ( 'wpsrd-purge' == $action ) {
 		
 		$revisions_count = 0;
-		$post_ids = array_map( 'intval', $_REQUEST['post'] );
+		$post_ids = array_map( 'intval', $_REQUEST[ 'post' ] );
 		
 		foreach ( $post_ids as $post_id ) {
 
