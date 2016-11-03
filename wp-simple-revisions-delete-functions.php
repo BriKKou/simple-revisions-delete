@@ -100,7 +100,7 @@ function wpsrd_norev_notice(){
 		add_settings_error(
 			'wpsrd-admin-norev',
 			'wpsrd_norev',
-			__( 'Revisions are deactivated on this site, the plugin "Simple Revisions Delete" has no reason to be installed.', 'wpsrd-translate' ) . ' ' . $dismiss,
+			__( 'Revisions are deactivated on this site, the plugin "Simple Revisions Delete" has no reason to be installed.', 'simple-revisions-delete' ) . ' ' . $dismiss,
 			'error'
 		);
 

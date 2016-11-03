@@ -27,14 +27,14 @@ function wpsrd_purge_revisions_button() {
 		$nonce = wp_create_nonce( 'delete-revisions_' . $post->ID );
 	
 		$content = '<span id="wpsrd-clear-revisions">&nbsp;&nbsp;';
-		$content .= '<a href="#clear-revisions" class="wpsrd-link once" data-nonce="' . $nonce . '" data-action="' . esc_attr__( 'Purging', 'wpsrd-translate' ) . '" data-error="' . esc_attr__( 'Something went wrong', 'wpsrd-translate' ) . '">';
-		$content .= __( 'Purge', 'wpsrd-translate' );
+		$content .= '<a href="#clear-revisions" class="wpsrd-link once" data-nonce="' . $nonce . '" data-action="' . esc_attr__( 'Purging', 'simple-revisions-delete' ) . '" data-error="' . esc_attr__( 'Something went wrong', 'simple-revisions-delete' ) . '">';
+		$content .= __( 'Purge', 'simple-revisions-delete' );
 		$content .= '</a>';
 		$content .= '<span class="wpsrd-loading"></span>';
 		$content .= '</span>';
 	
 		$content .= '<div class="misc-pub-section wpsrd-no-js">';
-		$content .= '<a class="" href="' . admin_url( 'admin-post.php?action=wpsrd_purge_revisions&wpsrd-post_ID=' . $post->ID . '&wpsrd-nonce=' . $nonce ) . '">' . esc_attr__( 'Purge revisions', 'wpsrd-translate' ) . '</a>';
+		$content .= '<a class="" href="' . admin_url( 'admin-post.php?action=wpsrd_purge_revisions&wpsrd-post_ID=' . $post->ID . '&wpsrd-nonce=' . $nonce ) . '">' . esc_attr__( 'Purge revisions', 'simple-revisions-delete' ) . '</a>';
 		$content .= '</div>';
 
 		echo $content;
@@ -54,14 +54,14 @@ function wpsrd_purge_revisions(){
 	
 	//Nonce check
 	if ( ! wp_verify_nonce( $nonce, 'delete-revisions_' . $postID ) ) {
-		$output = array( 'success' => 'error', 'data' => __( 'You can\'t do this...', 'wpsrd-translate' ) );
+		$output = array( 'success' => 'error', 'data' => __( 'You can\'t do this...', 'simple-revisions-delete' ) );
 	} else {
 		$revisions = wp_get_post_revisions( $postID );
 	}
 	
 	//Check revisions & delete them
 	if( isset( $revisions ) && !empty ( $revisions ) ) {
-		$output = array( 'success' => 'success', 'data' => __( 'Purged', 'wpsrd-translate' ) );
+		$output = array( 'success' => 'success', 'data' => __( 'Purged', 'simple-revisions-delete' ) );
 		
 		foreach ( $revisions as $revision ) {
 			$revDelete = wp_delete_post_revision( $revision );
@@ -75,7 +75,7 @@ function wpsrd_purge_revisions(){
 		}
 		
 	} else {
-		$output = array( 'success' => 'error', 'data' => __( 'There is no revisions for this post', 'wpsrd-translate' ) );
+		$output = array( 'success' => 'error', 'data' => __( 'There is no revisions for this post', 'simple-revisions-delete' ) );
 	}
 
 	//Output for AJAX call or no JS fallback

@@ -25,7 +25,7 @@ function wpsrd_purge_select_bulk_action() {
 	?>
 		<script type="text/javascript">
 			jQuery(document).ready(function() {
-				jQuery('<option>').val('wpsrd-purge').text('<?php _e( 'Purge revisions', 'wpsrd-translate' ) ?>').appendTo("select[name='action'], select[name='action2']");
+				jQuery('<option>').val('wpsrd-purge').text('<?php _e( 'Purge revisions', 'simple-revisions-delete' ) ?>').appendTo("select[name='action'], select[name='action2']");
 			});
 		</script>
 	<?php
@@ -60,7 +60,7 @@ if ( empty( $_REQUEST[ 'post' ] ) )
 
 			$extraNotice = '';
 			if ( $userCapability == 'delete_post' ){
-				$extraNotice = '&nbsp;&nbsp;&nbsp;<i style="font-weight:normal">' . __( 'Note: You can only purge revisions for the posts you\'re allowed to delete', 'wpsrd-translate' ) . '</i>';
+				$extraNotice = '&nbsp;&nbsp;&nbsp;<i style="font-weight:normal">' . __( 'Note: You can only purge revisions for the posts you\'re allowed to delete', 'simple-revisions-delete' ) . '</i>';
 			}
 
 			if ( current_user_can( $userCapability, $post_id ) && in_array( get_post_type( $post_id ), $postTypeList ) ) {
@@ -80,7 +80,7 @@ if ( empty( $_REQUEST[ 'post' ] ) )
 							$revisions_count++;
 							
 							$output = array( 
-								'success' => 'success', 'data' => sprintf( _n( '1 revision has been deleted', '%s revisions have been deleted', $revisions_count, 'wpsrd-translate' ), $revisions_count ) . $extraNotice								
+								'success' => 'success', 'data' => sprintf( _n( '1 revision has been deleted', '%s revisions have been deleted', $revisions_count, 'simple-revisions-delete' ), $revisions_count ) . $extraNotice								
 							);
 						}
 						
@@ -94,7 +94,7 @@ if ( empty( $_REQUEST[ 'post' ] ) )
 		
 		if ( $revisions_count == 0 ){
 			$output = array( 
-				'success' => 'error', 'data' => __( 'No revision to delete', 'wpsrd-translate' ) . $extraNotice
+				'success' => 'error', 'data' => __( 'No revision to delete', 'simple-revisions-delete' ) . $extraNotice
 			);
 		}
 		

@@ -40,7 +40,7 @@ function wpsrd_single_revision_delete() {
 		$postTypeList = wpsrd_post_types_default();
 
 		if ( !current_user_can( apply_filters( 'wpsrd_capability', 'delete_post' ), $postID ) && !in_array( get_post_type( $postID ), $postTypeList ) ) {
-	 		wp_send_json_error( __( 'You can\'t do this...', 'wpsrd-translate' ) );
+	 		wp_send_json_error( __( 'You can\'t do this...', 'simple-revisions-delete' ) );
 		}
 	
 		if ( !empty( $revID ) && $postID == wp_is_post_revision( $revID ) ) {	
@@ -57,13 +57,13 @@ function wpsrd_single_revision_delete() {
 			( $output['success'] == 'success' ? wp_send_json_success( $output[ 'data' ] ) : wp_send_json_error( $output[ 'data' ] ) );
 		
 		} else {
-	 		wp_send_json_error( __( 'Something went wrong', 'wpsrd-translate' ) );
+	 		wp_send_json_error( __( 'Something went wrong', 'simple-revisions-delete' ) );
 		}
 		
 	}
 
 	//If accessed directly
-	 wp_die( __( 'You can\'t do this...', 'wpsrd-translate' ) );
+	 wp_die( __( 'You can\'t do this...', 'simple-revisions-delete' ) );
 	 
 }
 add_action( 'wp_ajax_wpsrd_single_revision_delete', 'wpsrd_single_revision_delete' );

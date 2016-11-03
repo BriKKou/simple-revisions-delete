@@ -5,9 +5,9 @@
  * Description: Simple Revisions Delete add a discreet link within a post submit box to let you purge (delete) its revisions via AJAX. Bulk action is also available.
  * Author: Brice CAPOBIANCO
  * Author URI: http://b-website.com/
- * Version: 1.4.5
+ * Version: 1.4.6
  * Domain Path: /langs
- * Text Domain: wpsrd-translate
+ * Text Domain: simple-revisions-delete
  */
 
 /*  Copyright 2015  Brice CAPOBIANCO  (contact : http://b-website.com/contact)
@@ -40,7 +40,7 @@ if ( !defined( 'ABSPATH' ) ) {
  ***************************************************************/
 function wpsrd_load_textdomain() {
 	$path = dirname( plugin_basename( __FILE__ ) ) . '/langs/';
-	load_plugin_textdomain( 'wpsrd-translate', false, $path );
+	load_plugin_textdomain( 'simple-revisions-delete', false, $path );
 }
 add_action( 'init', 'wpsrd_load_textdomain' );
 
@@ -59,7 +59,7 @@ foreach( $wppicFiles as $wppicFile ){
  ***************************************************************/
 function wpsrd_meta_links( $links, $file ) {
 	if ( $file === 'simple-revisions-delete/wp-simple-revisions-delete.php' ) {
-		$links[] = '<a href="http://b-website.com/category/plugins" target="_blank" title="' . __( 'More b*web Plugins', 'wpsrd-translate' ) . '">'. __( 'More b*web Plugins', 'wpsrd-translate' ) .'</a>';
+		$links[] = '<a href="http://b-website.com/category/plugins" target="_blank" title="' . __( 'More b*web Plugins', 'simple-revisions-delete' ) . '">'. __( 'More b*web Plugins', 'simple-revisions-delete' ) .'</a>';
 		$links[] = '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z6YVM63739Y8" target="_blank" title="' . __( 'Donate to this plugin &#187;' ) . '"><strong>' . __( 'Donate to this plugin &#187;' ) . '</strong></a>';
 	}
 	return $links;
