@@ -46,10 +46,12 @@ if ( empty( $_REQUEST[ 'post' ] ) )
 	$wp_list_table = _get_list_table( 'WP_Posts_List_Table' );
 	$action = $wp_list_table->current_action();
 	
-	check_admin_referer( 'bulk-posts' );
 	
 	if ( 'wpsrd-purge' == $action ) {
 		
+		// Security check
+		check_admin_referer( 'bulk-posts' );
+
 		$revisions_count = 0;
 		$post_ids = array_map( 'intval', $_REQUEST[ 'post' ] );
 		
