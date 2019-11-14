@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: Simple Revisions Delete by b*web
+ * Plugin Name: Simple Revisions Delete by bweb
  * Plugin URI: http://b-website.com/
- * Description: Simple Revisions Delete add a discreet link within a post submit box to let you purge (delete) its revisions via AJAX. Bulk action is also available.
+ * Description: Let you delete your posts revisions individually or all at once (purge or bulk action). Compatible with Gutenberg (experimental) and classic editor.
  * Author: Brice CAPOBIANCO
  * Author URI: http://b-website.com/
- * Version: 1.4.7
+ * Version: 1.5
  * Domain Path: /langs
  * Text Domain: simple-revisions-delete
  */
@@ -48,7 +48,7 @@ add_action( 'init', 'wpsrd_load_textdomain' );
 /***************************************************************
  * Load plugin files
  ***************************************************************/
-$wppicFiles = array( 'functions', 'bulk', 'single', 'once' );
+$wppicFiles = array( 'functions', 'bulk', 'single', 'once', 'gutenberg' );
 foreach( $wppicFiles as $wppicFile ){
 	require_once( plugin_dir_path( __FILE__ ) . 'wp-simple-revisions-delete-' . $wppicFile . '.php' );
 }

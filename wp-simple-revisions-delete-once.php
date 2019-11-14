@@ -23,7 +23,7 @@ function wpsrd_single_revision_delete_button() {
 		}
 	}
 }
-add_action('admin_footer', 'wpsrd_single_revision_delete_button');
+add_action( 'admin_footer', 'wpsrd_single_revision_delete_button' );
 
 
 /***************************************************************

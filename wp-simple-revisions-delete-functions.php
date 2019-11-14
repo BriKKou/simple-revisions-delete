@@ -26,6 +26,15 @@ function wpsrd_add_admin_style() {
 			background-size: cover; 
 			margin: 0 0 -5px 4px;
 		}
+		.edit-post-last-revision__panel{
+			position: relative;
+		}
+		.edit-post-last-revision__panel #wpsrd-clear-revisions{
+			padding: 13px 16px;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
 		#wpsrd-clear-revisions .wpsrd-link.sucess { 
 			color: #444;
 			font-weight: 600;
@@ -131,11 +140,36 @@ add_action( 'admin_post_wpsrd_norev_dismiss', 'wpsrd_norev_dismiss' );
  ***************************************************************/
 function wpsrd_add_admin_scripts( $page ) {
     if ( $page == 'post-new.php' || $page == 'post.php' ) {
-		wp_enqueue_script( 'wpsrd_admin_js', plugin_dir_url( __FILE__ ) . 'js/wpsrd-admin-script.js', array( 'jquery' ), '1.4.1' );
-    }
+		wp_enqueue_script( 'wpsrd_admin_js', plugin_dir_url( __FILE__ ) . 'js/wpsrd-admin-script.js', array( 'jquery' ), '1.5' );
+	}
 }
 add_action( 'admin_enqueue_scripts', 'wpsrd_add_admin_scripts', 10, 1 );
 
+function wpsrd_gutenberg_register() {
+    wp_register_script( 'wpsrd_gutenberg_admin_js', plugin_dir_url( __FILE__ ) . 'js/wpsrd-gutenberg-script.js', array( 'jquery' ), '1.5' );
+}
+add_action( 'init', 'wpsrd_gutenberg_register' );
+
+function wpsrd_gutenberg_enqueue() {
+    wp_enqueue_script( 'wpsrd_gutenberg_admin_js' );
+}
+add_action( 'enqueue_block_editor_assets', 'wpsrd_gutenberg_enqueue' );
+
+/***************************************************************
+ * Check if current admin screen is using the block editor
+ ***************************************************************/
+ function wpsrd_is_gutenberg_page() {
+    // The Gutenberg plugin is on.
+    if ( function_exists( 'is_gutenberg_page' ) && is_gutenberg_page() )
+        return true;
+
+    // Gutenberg page on 5+.
+    $current_screen = get_current_screen();
+    if ( method_exists( $current_screen, 'is_block_editor' ) && $current_screen->is_block_editor())
+        return true;
+
+    return false;
+}
 
 /***************************************************************
  * Post types supported list

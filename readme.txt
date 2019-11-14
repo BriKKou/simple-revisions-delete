@@ -1,22 +1,28 @@
 === Simple Revisions Delete ===
 Contributors: briKou
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z6YVM63739Y8
-Tags: admin, plugin, blog, developper, metabox, ajax, WordPress, UX, ui, jquery, revision, revisions, database, purge, cleanup, clean, tools, best, post, edition, editing, delete, remove, bulk, bulk-action, nojs, CPT, custom post types, post type
+Tags: revisions, cleanup, delete, purge, gutenberg
 Requires at least: 3.5
-Tested up to: 4.6.1
-Stable tag: 1.4.7
+Tested up to: 5.3
+Requires PHP: 5.5.12
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
-Simple Revisions Delete adds a discreet link within a post submit box to let you purge (delete) its revisions via AJAX. Bulk actions also available.
 
 
 == Description ==
 
+**Let you delete your posts revisions individually or all at once (purge or bulk action). Compatible with Gutenberg (experimental) and classic editor.**
+
 = What does it do? =
+
+Simple Revisions Delete adds a discreet link within a post submit box to let you purge (delete) its revisions via AJAX. Bulk actions also available.
+
 It helps you keep a clean database by removing unnecessary posts revisions. Unlike other similar plugins, it lets you delete only specific posts revisions, not all your site revisions at once.
 The plugin is perfectly integrated in the WordPress back-end, and uses native core functions to safely delete revisions.
 It is very lightweight, very simple to use, and just does the job!
+
 
 = How does it work? =
 
@@ -24,7 +30,13 @@ The plugin adds a discreet link in the post submit box, next to the default revi
 When you click on it, it will purge the appropriate post revisions via AJAX (no JS is also support).
 It also add a new bulk action option in the post/page row view to let you purge revisions of multiple posts at once.
 
-Since v1.3 you can delete a single revision at once (see screenshots).
+
+= What's new? =
+
+**Since v2** you can now purge all your posts revisions from within the Gutenberg editor. 
+Keep in mind that this feature is experimental. I haven't yet find any way to make it works in a proper way with the current block editor available methods. I'm using jQuery (and AJAX) which is pretty much a hack (a workaround) and not a clean method considering the langages using by the Block Editor.
+
+**Since v1.3** you can delete a single revision at once (see screenshots).
 
 [See plugin page](http://b-website.com/simple-revisions-delete-free-wordpress-plugin "Plugin page")
 
@@ -83,7 +95,7 @@ Only users who can delete a post can purge its revisions.
 Yes.
 
 = Does it work if javascript is not activated? =
-Yes, but only when editing a post, not with the bulk action.
+Yes, but only when editing a post, not with the bulk action, nor with the Block Editor.
 
 
 == Screenshots ==
@@ -93,8 +105,15 @@ Yes, but only when editing a post, not with the bulk action.
 3. Done!
 4. Bulk action
 5. Single revision delete
+6. The link location in Gutenberg
 
 == Changelog ==
+
+= 1.5 - 14/11/2019 =
+* BETA FEATURE : Add Gutenberg editor compatibility
+* Tested on WP 5.3 with success!
+* Replace depreciated jQuery "live" API by "on"
+* readme.txt update
 
 = 1.4.7 - 11/29/2016 =
 * Bug fix : fix an issue with WooCommerce duplicate product
