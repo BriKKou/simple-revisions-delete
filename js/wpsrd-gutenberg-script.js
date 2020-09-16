@@ -3,8 +3,8 @@
  * Plugin URI: http://b-website.com/
  * Author: Brice CAPOBIANCO - b*web
  */
-jQuery(document).ready(function($) {
-    $(window).load(function() {
+jQuery(document).ready(function ($) {
+    $(window).load(function () {
 
         //Set revisions coutner to 0 and remove link to revisions control page
         function wpsrd_set_counter_null() {
@@ -17,7 +17,7 @@ jQuery(document).ready(function($) {
 
         // Insert revision purge link
         function wpsrd_purge_link() {
-            setTimeout(function() {
+            setTimeout(function () {
                 if ($('#wpsrd-gutenberg').length > 0 && $('.edit-post-last-revision__panel').length > 0) {
                     $('.edit-post-last-revision__panel').append($('#wpsrd-gutenberg').html());
                     $('#wpsrd-clear-revisions').css('display', 'inline-block');
@@ -27,9 +27,9 @@ jQuery(document).ready(function($) {
 
         //Add remove link under Gutenberg revisions control
         wpsrd_purge_link();
-        $('.edit-post-header__settings, .edit-post-sidebar, .edit-post-layout__content').on('click, focusout', 'button.components-button, button.edit-post-sidebar__panel-tab, .editor-block-list__layout, .editor-post-save-draft', function() {
+        $('.edit-post-header__settings, .edit-post-sidebar, .edit-post-layout__content').on('click, focusout', 'button.components-button, button.edit-post-sidebar__panel-tab, .editor-block-list__layout, .editor-post-save-draft', function () {
             if ($('#wpsrd-gutenberg').hasClass('purged')) {
-                setTimeout(function() {
+                setTimeout(function () {
                     wpsrd_set_counter_null();
                 }, 300);
             } else {
@@ -48,10 +48,10 @@ jQuery(document).ready(function($) {
                 callback(el || null)
             }, interval)
         }
-        $('.edit-post-header__settings').on('click', '.editor-post-publish-button, .editor-post-save-draft', function() {
-            setTimeout(function() {
+        $('.edit-post-header__settings').on('click', '.editor-post-publish-button, .editor-post-save-draft', function () {
+            setTimeout(function () {
                 var selector = $('.edit-post-last-revision__panel');
-                waitForEl(selector, function() {
+                waitForEl(selector, function () {
                     $('#wpsrd-gutenberg').removeClass('purged')
                     $('.edit-post-last-revision__panel #wpsrd-clear-revisions, .edit-post-last-revision__panel .misc-pub-section').remove();
                     wpsrd_purge_link();
@@ -60,7 +60,7 @@ jQuery(document).ready(function($) {
         });
 
         //Ajax clear revisions 
-        $('.edit-post-sidebar').on('click', '#wpsrd-clear-revisions a.once', function(event) {
+        $('.edit-post-sidebar').on('click', '#wpsrd-clear-revisions a.once', function (event) {
             if ($('.edit-post-last-revision__panel').length > 0) {
                 event.preventDefault();
                 $(this).removeClass('once').html($(this).data('action')).blur();
@@ -75,7 +75,7 @@ jQuery(document).ready(function($) {
                         'wpsrd-nonce': $('#wpsrd-clear-revisions a').data('nonce'),
                         'wpsrd-post_ID': $('#post_ID[name="post_ID"]').val()
                     },
-                    success: function(response) {
+                    success: function (response) {
                         if (response.success) {
                             $('.edit-post-last-revision__panel #wpsrd-clear-revisions .wpsrd-loading, .misc-pub-revisions > a').remove();
                             wpsrd_set_counter_null();
@@ -85,11 +85,11 @@ jQuery(document).ready(function($) {
                             $('.edit-post-last-revision__panel #wpsrd-clear-revisions a.wpsrd-link').addClass('error').html(response.data);
                         }
                         $('#wpsrd-gutenberg').addClass('purged');
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $('.edit-post-last-revision__panel #wpsrd-clear-revisions').fadeOut();
                         }, 3500);
                     },
-                    error: function(response) {
+                    error: function (response) {
                         $('.edit-post-last-revision__panel #wpsrd-clear-revisions .wpsrd-loading').remove();
                         $('.edit-post-last-revision__panel #wpsrd-clear-revisions a').html($('#wpsrd-clear-revisions a').data('error')).addClass('error');
                     }

@@ -3,9 +3,9 @@ Contributors: briKou
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z6YVM63739Y8
 Tags: revisions, cleanup, delete, purge, gutenberg
 Requires at least: 3.5
-Tested up to: 5.3
+Tested up to: 5.5.1
 Requires PHP: 5.5.12
-Stable tag: 1.5
+Stable tag: 1.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -108,6 +108,11 @@ Yes, but only when editing a post, not with the bulk action, nor with the Block 
 6. The link location in Gutenberg
 
 == Changelog ==
+
+= 1.5.1 - 09/16/2020 =
+* Tested on WP 5.5.1 with success!
+* Remove W3 Total Cache fix from 1.3
+* Coding standards improvements
 
 = 1.5 - 14/11/2019 =
 * BETA FEATURE : Add Gutenberg editor compatibility

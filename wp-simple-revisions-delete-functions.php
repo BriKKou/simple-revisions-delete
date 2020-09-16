@@ -1,15 +1,17 @@
 <?php
-/***************************************************************
+/**
  * SECURITY : Exit if accessed directly
-***************************************************************/
-if ( !defined( 'ABSPATH' ) ) {
+ */
+if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access not allowed!' );
 }
 
 
-/***************************************************************
+/**
  * Print Style in admin header
- ***************************************************************/
+ */
+add_action( 'admin_print_styles-post-new.php', 'wpsrd_add_admin_style' );
+add_action( 'admin_print_styles-post.php', 'wpsrd_add_admin_style' );
 function wpsrd_add_admin_style() {
 	echo '
 	<style>
@@ -19,7 +21,7 @@ function wpsrd_add_admin_style() {
 		}
 		.wpsrd-loading { 
 			display:none; 
-			background-image: url(' . admin_url('images/spinner-2x.gif') . '); 
+			background-image: url(' . admin_url( 'images/spinner-2x.gif' ) . '); 
 			display: none; 
 			width: 18px; 
 			height: 18px; 
@@ -73,38 +75,39 @@ function wpsrd_add_admin_style() {
 	</noscript>
 	';
 }
-add_action( 'admin_print_styles-post-new.php', 'wpsrd_add_admin_style');
-add_action( 'admin_print_styles-post.php', 'wpsrd_add_admin_style');
 
 
-/***************************************************************
+
+/**
  * Check if revisions are activated on plugin load
-***************************************************************/
-function wpsrd_norev_check(){
-	if ( !WP_POST_REVISIONS ){
+ */
+register_activation_hook( __FILE__, 'wpsrd_norev_check' );
+function wpsrd_norev_check() {
+	if ( ! WP_POST_REVISIONS ) {
 		//Keep in memory if revisions are deactivated
 		set_transient( 'wpsrd_norev', true, 0 );
 	}
 }
-register_activation_hook( __FILE__, 'wpsrd_norev_check' );
 
 
-/***************************************************************
+/**
  * Display the notice if revisions are deactivated
-***************************************************************/
-function wpsrd_norev_notice(){
-	if ( current_user_can( 'activate_plugins' ) && 	!WP_POST_REVISIONS ){
+ */
+add_action( 'admin_notices', 'wpsrd_norev_notice' );
+function wpsrd_norev_notice() {
+	if ( current_user_can( 'activate_plugins' ) && ! WP_POST_REVISIONS ) {
 		// Exit if no notice
-		if ( ! ( get_transient( 'wpsrd_norev' ) ) )
+		if ( ! ( get_transient( 'wpsrd_norev' ) ) ) {
 			return;
+		}
 
 		//Build the dismiss notice link
 		$dismiss = '
 			<a class="wpsrd-dismiss" href="' . admin_url( 'admin-post.php?action=wpsrd_norev_dismiss' ) . '" style="float: right; text-decoration: none;">
-				' . __('Dismiss') . '<span class="dashicons dashicons-no-alt"></span>
+				' . __( 'Dismiss' ) . '<span class="dashicons dashicons-no-alt"></span>
 			</a>
 		';
-		
+
 		//Prepare the notice
 		add_settings_error(
 			'wpsrd-admin-norev',
@@ -117,135 +120,100 @@ function wpsrd_norev_notice(){
 		settings_errors( 'wpsrd-admin-norev' );
 	}
 }
-add_action( 'admin_notices', 'wpsrd_norev_notice' );
 
 
-/***************************************************************
+/**
  * Dismiss the notice if revisions are deactivated
-***************************************************************/
-function wpsrd_norev_dismiss(){
+ */
+add_action( 'admin_post_wpsrd_norev_dismiss', 'wpsrd_norev_dismiss' );
+function wpsrd_norev_dismiss() {
 	// Only redirect if accesed direclty & transients has already been deleted
 	if ( ( get_transient( 'wpsrd_norev' ) ) ) {
 		delete_transient( 'wpsrd_norev' );
 	}
-	
+
 	//Redirect to previous page
 	wp_safe_redirect( wp_get_referer() );
 }
-add_action( 'admin_post_wpsrd_norev_dismiss', 'wpsrd_norev_dismiss' );
 
 
-/***************************************************************
+/**
  * Admin enqueue script
- ***************************************************************/
+ */
+add_action( 'admin_enqueue_scripts', 'wpsrd_add_admin_scripts', 10, 1 );
+add_action( 'init', 'wpsrd_gutenberg_register' );
+add_action( 'enqueue_block_editor_assets', 'wpsrd_gutenberg_enqueue' );
+
 function wpsrd_add_admin_scripts( $page ) {
-    if ( $page == 'post-new.php' || $page == 'post.php' ) {
+	if ( $page == 'post-new.php' || $page == 'post.php' ) {
 		wp_enqueue_script( 'wpsrd_admin_js', plugin_dir_url( __FILE__ ) . 'js/wpsrd-admin-script.js', array( 'jquery' ), '1.5' );
 	}
 }
-add_action( 'admin_enqueue_scripts', 'wpsrd_add_admin_scripts', 10, 1 );
 
 function wpsrd_gutenberg_register() {
-    wp_register_script( 'wpsrd_gutenberg_admin_js', plugin_dir_url( __FILE__ ) . 'js/wpsrd-gutenberg-script.js', array( 'jquery' ), '1.5' );
+	wp_register_script( 'wpsrd_gutenberg_admin_js', plugin_dir_url( __FILE__ ) . 'js/wpsrd-gutenberg-script.js', array( 'jquery' ), '1.5' );
 }
-add_action( 'init', 'wpsrd_gutenberg_register' );
 
 function wpsrd_gutenberg_enqueue() {
-    wp_enqueue_script( 'wpsrd_gutenberg_admin_js' );
+	wp_enqueue_script( 'wpsrd_gutenberg_admin_js' );
 }
-add_action( 'enqueue_block_editor_assets', 'wpsrd_gutenberg_enqueue' );
 
-/***************************************************************
+/**
  * Check if current admin screen is using the block editor
- ***************************************************************/
- function wpsrd_is_gutenberg_page() {
-    // The Gutenberg plugin is on.
-    if ( function_exists( 'is_gutenberg_page' ) && is_gutenberg_page() )
-        return true;
+ */
+function wpsrd_is_gutenberg_page() {
+	// The Gutenberg plugin is on.
+	if ( function_exists( 'is_gutenberg_page' ) && is_gutenberg_page() ) {
+		return true;
+	}
 
-    // Gutenberg page on 5+.
-    $current_screen = get_current_screen();
-    if ( method_exists( $current_screen, 'is_block_editor' ) && $current_screen->is_block_editor())
-        return true;
+	// Gutenberg page on 5+.
+	$current_screen = get_current_screen();
+	if ( method_exists( $current_screen, 'is_block_editor' ) && $current_screen->is_block_editor() ) {
+		return true;
+	}
 
-    return false;
+	return false;
 }
 
-/***************************************************************
+/**
  * Post types supported list
- ***************************************************************/
-function wpsrd_post_types_default(){
-	$postTypes = array( 'post', 'page' );
+ */
+function wpsrd_post_types_default() {
+	$postTypes        = array( 'post', 'page' );
 	return $postTypes = apply_filters( 'wpsrd_post_types_list', $postTypes );
 }
 
-	
-/***************************************************************
- * Hack to prevent 'W3 Total Cache' caching the notice transient
- * Thanks to @doublesharp http://wordpress.stackexchange.com/a/123537
- ***************************************************************/
-function wpsrd_disable_linked_in_cached( $value=null ){
-	if( is_admin() ) {
-		global $pagenow;
-		if( 'edit.php' == $pagenow ) {
-			global $_wp_using_ext_object_cache;
-			if ( !empty( $_wp_using_ext_object_cache ) ){
-				$_wp_using_ext_object_cache_prev = $_wp_using_ext_object_cache;
-				$_wp_using_ext_object_cache = false;
-			}
-		}
-	}	
-	return $value;
-}
-add_filter( 'pre_set_transient_wpsrd_settings_errors', 'wpsrd_disable_linked_in_cached' );
-add_filter( 'pre_transient_wpsrd_settings_errors', 'wpsrd_disable_linked_in_cached' );
-add_action( 'delete_transient_wpsrd_settings_errors', 'wpsrd_disable_linked_in_cached' );
 
-function wpsrd_enable_linked_in_cached( $value=null ){
-	if( is_admin() ) {
-		global $pagenow;
-		if( 'edit.php' == $pagenow ) {
-			global $_wp_using_ext_object_cache;
-			if ( !empty( $_wp_using_ext_object_cache ) ){
-				$_wp_using_ext_object_cache = $_wp_using_ext_object_cache_prev;
-			}
-		}
-	}
-	return $value;
-}
-add_action( 'set_transient_wpsrd_settings_errors', 'wpsrd_enable_linked_in_cached' );
-add_filter( 'transient_wpsrd_settings_errors', 'wpsrd_enable_linked_in_cached' );
-add_action( 'deleted_transient_wpsrd_settings_errors', 'wpsrd_enable_linked_in_cached' );
-
-
-/***************************************************************
+/**
  * Display admin notice after purging revisions
- ***************************************************************/
-function wpsrd_notice_display(){
-	
+ */
+add_action( 'admin_notices', 'wpsrd_notice_display', 0 );
+function wpsrd_notice_display() {
+
 	// Exit if no notice
-	if ( !( $notices = get_transient( 'wpsrd_settings_errors' ) ) )
+	if ( ! ( $notices = get_transient( 'wpsrd_settings_errors' ) ) ) {
 		return;
-		
-	$noticeCode = array( 'wpsrd_notice', 'wpsrd_notice_WP_error' );
-	
+	}
+
+	$notice_code = array( 'wpsrd_notice', 'wpsrd_notice_WP_error' );
+
 	//Rebuild the notice
 	foreach ( (array) $notices as $notice ) {
-		if( isset( $notice[ 'code' ] ) && in_array( $notice[ 'code' ] , $noticeCode ) ) {
+		if ( isset( $notice['code'] ) && in_array( $notice['code'], $notice_code ) ) {
 			add_settings_error(
-				$notice[ 'setting' ],
-				$notice[ 'code' ],
-				$notice[ 'message' ],
-				$notice[ 'type' ]
+				$notice['setting'],
+				$notice['code'],
+				$notice['message'],
+				$notice['type']
 			);
 		}
 	}
 
 	//Display the notice
-	settings_errors( $notice[ 'setting' ] );
-	
+	settings_errors( $notice['setting'] );
+
 	// Remove the transient after displaying the notice
 	delete_transient( 'wpsrd_settings_errors' );
-	
+
 }
-add_action( 'admin_notices', 'wpsrd_notice_display', 0 );

@@ -3,12 +3,12 @@
  * Plugin URI: http://b-website.com/
  * Author: Brice CAPOBIANCO - b*web
  */
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
 
     //Ajax clear revisions
     if ($('.misc-pub-revisions b').length > 0) {
         $('#wpsrd-clear-revisions').appendTo('.misc-pub-revisions').show();
-        $('#wpsrd-clear-revisions a.once').on("click", function(event) {
+        $('#wpsrd-clear-revisions a.once').on("click", function (event) {
             event.preventDefault();
             $(this).removeClass('once').html($(this).data('action')).blur();
             $('#wpsrd-clear-revisions a.wpsrd-link').css({
@@ -22,7 +22,7 @@ jQuery(document).ready(function($) {
                     'wpsrd-nonce': $('#wpsrd-clear-revisions a').data('nonce'),
                     'wpsrd-post_ID': $('#post_ID[name="post_ID"]').val()
                 },
-                success: function(response) {
+                success: function (response) {
                     if (response.success) {
                         $('#revisionsdiv').slideUp();
                         $('#wpsrd-clear-revisions .wpsrd-loading, .misc-pub-revisions > a').remove();
@@ -32,11 +32,11 @@ jQuery(document).ready(function($) {
                         $('#wpsrd-clear-revisions .wpsrd-loading').remove();
                         $('#wpsrd-clear-revisions a.wpsrd-link').addClass('error').html(response.data);
                     }
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $('#wpsrd-clear-revisions a.wpsrd-link').fadeOut();
                     }, 3500);
                 },
-                error: function(response) {
+                error: function (response) {
                     $('#wpsrd-clear-revisions .wpsrd-loading').remove();
                     $('#wpsrd-clear-revisions a').html($('#wpsrd-clear-revisions a').data('error')).addClass('error');
                 }
@@ -48,13 +48,13 @@ jQuery(document).ready(function($) {
     if ($('.post-php #revisionsdiv').length > 0 && $('#wpsrd-btn-container').length) {
 
         $('#wpsrd-btn-container .wpsrd-btn').clone().appendTo('#revisionsdiv .post-revisions li');
-        $.each($('#revisionsdiv .wpsrd-btn'), function() {
+        $.each($('#revisionsdiv .wpsrd-btn'), function () {
             var url = $(this).parent('li').find('a').attr('href');
             var revID = url.split('revision=').pop();
             $(this).attr('data-revid', revID);
         });
 
-        $('#revisionsdiv .wpsrd-btn.once').on("click", function(event) {
+        $('#revisionsdiv .wpsrd-btn.once').on("click", function (event) {
             event.preventDefault();
             var elem = $(this);
             elem.removeClass('once');
@@ -67,7 +67,7 @@ jQuery(document).ready(function($) {
                     'revID': elem.data('revid'),
                     'wpsrd-post_ID': $('#post #post_ID').val()
                 },
-                success: function(response) {
+                success: function (response) {
                     elem.hide();
                     var count = $('.misc-pub-revisions b').text();
                     elem.parent('li').find('.wpsrd-loading').hide();
@@ -78,7 +78,7 @@ jQuery(document).ready(function($) {
                     } else {
                         elem.parent('li').addClass('error').append('<b> ' + response.data + '</b>');
                     }
-                    setTimeout(function() {
+                    setTimeout(function () {
                         elem.parent('li').fadeOut();
                         elem.remove();
                         if (count == '0') {
@@ -87,7 +87,7 @@ jQuery(document).ready(function($) {
                         }
                     }, 3500);
                 },
-                error: function(response) {
+                error: function (response) {
                     elem.parent('li').find('.wpsrd-loading').hide();
                     elem.parent('li').addClass('error').append('<b> ' + $('#wpsrd-clear-revisions a').data('error') + '</b>');
                     elem.remove();
