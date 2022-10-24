@@ -3,6 +3,7 @@
  * Plugin URI: http://b-website.com/
  * Author: Brice CAPOBIANCO - b*web
  */
+
 jQuery(document).ready(function ($) {
 
     //Ajax clear revisions

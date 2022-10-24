@@ -12,7 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access not allowed!' );
 }
 
-
 /**
  * Add the purge option in the bulk select
  */
@@ -32,8 +31,6 @@ function wpsrd_purge_select_bulk_action() {
 		<?php
 	}
 }
-
-
 
 /**
  * Add the purge option in the bulk select

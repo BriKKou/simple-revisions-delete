@@ -6,7 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access not allowed!' );
 }
 
-
 /**
  * Insert delete button if user can delete revisions
  */
@@ -26,7 +25,6 @@ function wpsrd_single_revision_delete_button() {
 	}
 }
 
-
 /**
  * Delete single revision from revisions meta box
  */
@@ -37,7 +35,7 @@ function wpsrd_single_revision_delete() {
 
 		//Get var from GET
 		$post_id = $_GET['wpsrd-post_ID'];
-		$revID  = $_GET['revID'];
+		$revID   = $_GET['revID'];
 
 		$post_type_list = wpsrd_post_types_default();
 

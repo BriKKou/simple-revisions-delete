@@ -26,14 +26,12 @@
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
 /**
  * SECURITY : Exit if accessed directly
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access not allowed!' );
 }
-
 
 /**
  * Load plugin textdomain
@@ -44,7 +42,6 @@ function wpsrd_load_textdomain() {
 	load_plugin_textdomain( 'simple-revisions-delete', false, $path );
 }
 
-
 /**
  * Load plugin files
  */
@@ -52,7 +49,6 @@ $wppic_files = array( 'functions', 'bulk', 'single', 'once', 'gutenberg' );
 foreach ( $wppic_files as $wppic_file ) {
 	require_once( plugin_dir_path( __FILE__ ) . 'wp-simple-revisions-delete-' . $wppic_file . '.php' );
 }
-
 
 /**
  * Add custom meta link on plugin list page

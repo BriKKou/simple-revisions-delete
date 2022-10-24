@@ -3,9 +3,9 @@ Contributors: briKou
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z6YVM63739Y8
 Tags: revisions, cleanup, delete, purge, gutenberg
 Requires at least: 3.5
-Tested up to: 5.5.1
+Tested up to: 6.0.3
 Requires PHP: 5.5.12
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -109,21 +109,26 @@ Yes, but only when editing a post, not with the bulk action, nor with the Block 
 
 == Changelog ==
 
-= 1.5.1 - 09/16/2020 =
+= 1.5.2 - 2022/10/24 =
+* Tested on WP 6.0.3 with success!
+* Update readme
+
+
+= 1.5.1 - 2020/09/16 =
 * Tested on WP 5.5.1 with success!
 * Remove W3 Total Cache fix from 1.3
 * Coding standards improvements
 
-= 1.5 - 14/11/2019 =
+= 1.5 - 2019/11/14 =
 * BETA FEATURE : Add Gutenberg editor compatibility
 * Tested on WP 5.3 with success!
 * Replace depreciated jQuery "live" API by "on"
 * readme.txt update
 
-= 1.4.7 - 11/29/2016 =
+= 1.4.7 - 2016/11/29 =
 * Bug fix : fix an issue with WooCommerce duplicate product
 
-= 1.4.6 - 11/03/2016 =
+= 1.4.6 - 2016/11/03 =
 * Change text-domain to take advantage of language packs translate.wordpress.org
 
 = 1.4.5 =

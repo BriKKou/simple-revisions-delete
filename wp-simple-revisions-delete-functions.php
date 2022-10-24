@@ -6,7 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access not allowed!' );
 }
 
-
 /**
  * Print Style in admin header
  */
@@ -76,8 +75,6 @@ function wpsrd_add_admin_style() {
 	';
 }
 
-
-
 /**
  * Check if revisions are activated on plugin load
  */
@@ -88,7 +85,6 @@ function wpsrd_norev_check() {
 		set_transient( 'wpsrd_norev', true, 0 );
 	}
 }
-
 
 /**
  * Display the notice if revisions are deactivated
@@ -121,7 +117,6 @@ function wpsrd_norev_notice() {
 	}
 }
 
-
 /**
  * Dismiss the notice if revisions are deactivated
  */
@@ -135,7 +130,6 @@ function wpsrd_norev_dismiss() {
 	//Redirect to previous page
 	wp_safe_redirect( wp_get_referer() );
 }
-
 
 /**
  * Admin enqueue script
@@ -183,7 +177,6 @@ function wpsrd_post_types_default() {
 	$postTypes        = array( 'post', 'page' );
 	return $postTypes = apply_filters( 'wpsrd_post_types_list', $postTypes );
 }
-
 
 /**
  * Display admin notice after purging revisions

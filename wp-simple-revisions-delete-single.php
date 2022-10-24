@@ -6,7 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access not allowed!' );
 }
 
-
 /**
  * Remove revisions button
  */
@@ -43,7 +42,6 @@ function wpsrd_purge_revisions_button() {
 		echo $content;
 	}
 }
-
 
 /**
  * Remove revisions functions
