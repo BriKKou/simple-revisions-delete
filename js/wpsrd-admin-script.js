@@ -45,7 +45,7 @@ jQuery(document).ready(function ($) {
         });
     }
 
-    //Ajax single revision delete
+    // Ajax single revision delete
     if ($('.post-php #revisionsdiv').length > 0 && $('#wpsrd-btn-container').length) {
 
         $('#wpsrd-btn-container .wpsrd-btn').clone().appendTo('#revisionsdiv .post-revisions li');
@@ -66,7 +66,8 @@ jQuery(document).ready(function ($) {
                 data: {
                     'action': 'wpsrd_single_revision_delete',
                     'revID': elem.data('revid'),
-                    'wpsrd-post_ID': $('#post #post_ID').val()
+                    'wpsrd-post_ID': $('#post #post_ID').val(),
+                    'wpsrd-nonce': elem.data('nonce')
                 },
                 success: function (response) {
                     elem.hide();

@@ -5,7 +5,7 @@ Tags: revisions, cleanup, delete, purge, gutenberg
 Requires at least: 3.5
 Tested up to: 6.4.3
 Requires PHP: 5.5.12
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -108,6 +108,10 @@ Yes, but only when editing a post, not with the bulk action, nor with the Block 
 6. The link location in Gutenberg
 
 == Changelog ==
+
+= 1.5.4 - 2024/03/07 =
+* Security fix - Cross Site Request Forgery (CSRF)
+* Update readme
 
 = 1.5.3 - 2024/03/07 =
 * Tested on WP 6.4.3 with success!

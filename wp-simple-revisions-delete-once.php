@@ -19,8 +19,10 @@ function wpsrd_single_revision_delete_button() {
 			return;
 		}
 
+		$nonce = wp_create_nonce( 'delete-revisions_' . $post->ID );
+
 		if ( current_user_can( apply_filters( 'wpsrd_capability', 'delete_post' ), $post->ID ) && in_array( get_post_type( $post->ID ), $post_type_list ) ) {
-			echo '<div id="wpsrd-btn-container" style="display:none"><a href="#delete-revision" class="action wpsrd-btn once">' . __( 'Delete' ) . '</a></div>';
+			echo '<div id="wpsrd-btn-container" style="display:none"><a href="#delete-revision" data-nonce="' . $nonce . '" class="action wpsrd-btn once">' . __( 'Delete' ) . '</a></div>';
 		}
 	}
 }
@@ -36,6 +38,15 @@ function wpsrd_single_revision_delete() {
 		//Get var from GET
 		$post_id = $_GET['wpsrd-post_ID'];
 		$revID   = $_GET['revID'];
+		$nonce 	 = $_GET['wpsrd-nonce'];
+
+		//Nonce check
+		if ( ! wp_verify_nonce( $nonce, 'delete-revisions_' . $post_id ) ) {
+			$output = array(
+				'success' => 'error',
+				'data'    => __( 'You can\'t do this...', 'simple-revisions-delete' ),
+			);
+		}
 
 		$post_type_list = wpsrd_post_types_default();
 
