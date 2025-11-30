@@ -5,7 +5,7 @@
  * Description: Let you delete your posts revisions individually or all at once (purge or bulk action). Compatible with Gutenberg (experimental) and classic editor.
  * Author: Brice CAPOBIANCO
  * Author URI: http://b-website.com/
- * Version: 1.5.4
+ * Version: 1.5.5
  * Domain Path: /langs
  * Text Domain: simple-revisions-delete
  */
