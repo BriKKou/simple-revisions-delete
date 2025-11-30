@@ -8,8 +8,7 @@ Requires PHP: 5.5.12
 Stable tag: 1.5.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
- 
-
+Simple Revisions Delete adds a discreet link within a post submit box to let you purge (delete) its revisions via AJAX. Bulk actions also available.
 
 == Description ==
 
@@ -40,7 +39,7 @@ Keep in mind that this feature is experimental. I haven't yet find any way to ma
 
 [See plugin page](http://b-website.com/simple-revisions-delete-free-wordpress-plugin "Plugin page")
 
-NOTE: There is no admin page for this plugin - none is needed.
+NOTE: There is no admin page for this plugin – none is needed.
 
 
 = Post Types support =
@@ -69,8 +68,8 @@ The plugin only bears a few sentences, but you can easily translate them through
 
 * English
 * French
-* Deutsch - Thanks to [mallard66](https://profiles.wordpress.org/mallard66 "mallard66")
-* Dutch - Thanks to [jondor](https://profiles.wordpress.org/jondor "jondor")
+* Deutsch – Thanks to [mallard66](https://profiles.wordpress.org/mallard66 "mallard66")
+* Dutch – Thanks to [jondor](https://profiles.wordpress.org/jondor "jondor")
 
 Become a translator and send me your translation! [Contact-me](http://b-website.com/contact "Contact")
 
@@ -101,7 +100,7 @@ Yes, but only when editing a post, not with the bulk action, nor with the Block 
 == Screenshots ==
 
 1. The link location
-2. Processing...
+2. Processing…
 3. Done!
 4. Bulk action
 5. Single revision delete
@@ -109,37 +108,38 @@ Yes, but only when editing a post, not with the bulk action, nor with the Block 
 
 == Changelog ==
 
-= 1.5.5 - 2025/11/30 =
+= 1.5.5 – 2025/11/30 =
 * Tested on WP 6.9 with success!
-
-= 1.5.4 - 2024/03/07 =
-* Security fix - Cross Site Request Forgery (CSRF)
 * Update readme
 
-= 1.5.3 - 2024/03/07 =
+= 1.5.4 – 2024/03/07 =
+* Security fix – Cross Site Request Forgery (CSRF)
+* Update readme
+
+= 1.5.3 – 2024/03/07 =
 * Tested on WP 6.4.3 with success!
 * Update readme
 
-= 1.5.2 - 2022/10/24 =
+= 1.5.2 – 2022/10/24 =
 * Tested on WP 6.0.3 with success!
 * Update readme
 
 
-= 1.5.1 - 2020/09/16 =
+= 1.5.1 – 2020/09/16 =
 * Tested on WP 5.5.1 with success!
 * Remove W3 Total Cache fix from 1.3
 * Coding standards improvements
 
-= 1.5 - 2019/11/14 =
+= 1.5 – 2019/11/14 =
 * BETA FEATURE : Add Gutenberg editor compatibility
 * Tested on WP 5.3 with success!
 * Replace depreciated jQuery "live" API by "on"
 * readme.txt update
 
-= 1.4.7 - 2016/11/29 =
+= 1.4.7 – 2016/11/29 =
 * Bug fix : fix an issue with WooCommerce duplicate product
 
-= 1.4.6 - 2016/11/03 =
+= 1.4.6 – 2016/11/03 =
 * Change text-domain to take advantage of language packs translate.wordpress.org
 
 = 1.4.5 =
