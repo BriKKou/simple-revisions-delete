@@ -1,140 +1,164 @@
+# Translation of the Simple Revisions Delete plugin.
+# Copyright (C) 2026 Brice CAPOBIANCO
+# This file is distributed under the same license as the Simple Revisions Delete package.
+# Brice CAPOBIANCO <https://b-website.com/contact>, 2026.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: Simple Revisions Delete by b*web v1.4.6\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sun Feb 01 2015 20:31:10 GMT+0100 (Mitteleuropäische Zeit)\n"
-"PO-Revision-Date: 2016-11-03 18:32:32+0000\n"
-"Last-Translator: Anders Lind <lind@erding-mallards.de>\n"
-"Language-Team: \n"
+"Project-Id-Version: Simple Revisions Delete 2.0.0\n"
+"Report-Msgid-Bugs-To: https://b-website.com/contact\n"
+"POT-Creation-Date: 2026-09-02 08:41+0200\n"
+"PO-Revision-Date: 2026-09-02 08:41+0200\n"
+"Last-Translator: Brice CAPOBIANCO (initial translation: mallard66)\n"
+"Language-Team: b*web <https://b-website.com/contact>\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Loco - https://localise.biz/\n"
-"X-Poedit-Language: \n"
-"X-Poedit-Country: \n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-Bookmarks: \n"
-"X-Poedit-SearchPath-0: ../../plugins/simple-revisions-delete\n"
-"X-Textdomain-Support: yes"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: wp-simple-revisions-delete-functions.php:95
-#@ default
-msgid "Dismiss"
-msgstr "Verwerfen"
+#: includes/class-wpsrd-block-editor.php:57
+msgid "Revisions"
+msgstr "Revisionen"
 
-#: wp-simple-revisions-delete-functions.php:103
-#@ simple-revisions-delete
-msgid "Revisions are deactivated on this site, the plugin \"Simple Revisions Delete\" has no reason to be installed."
-msgstr "Revisionen sind auf dieser Site deaktiviert, daher gibt es keinen Grund, das Plugin \"Simple Revisions Delete\" zu installieren."
-
-#: wp-simple-revisions-delete.php:62
-#@ simple-revisions-delete
-msgid "More b*web Plugins"
-msgstr "Mehr Plugins von b*web"
-
-#: wp-simple-revisions-delete.php:63
-#@ default
-msgid "Donate to this plugin &#187;"
-msgstr "Für dieses Plugin Spenden &#187;"
-
-#: wp-simple-revisions-delete-once.php:22
-#@ default
-msgid "Delete"
-msgstr "Entfernen"
-
-#: wp-simple-revisions-delete-once.php:43
-#: wp-simple-revisions-delete-once.php:66
-#: wp-simple-revisions-delete-single.php:57
-#@ simple-revisions-delete
-msgid "You can't do this..."
-msgstr "Das kannst Du nicht machen..."
-
-#: wp-simple-revisions-delete-once.php:54
-#@ default
-msgid "Deleted"
-msgstr "Entfernt"
-
-#: wp-simple-revisions-delete-once.php:60
-#: wp-simple-revisions-delete-single.php:30
-#@ simple-revisions-delete
-msgid "Something went wrong"
-msgstr "Etwas ist schief gelaufen"
-
-#: wp-simple-revisions-delete-bulk.php:28
-#: wp-simple-revisions-delete-single.php:37
-#@ simple-revisions-delete
-msgid "Purge revisions"
-msgstr "Revisionen entfernen"
-
-#: wp-simple-revisions-delete-bulk.php:83
-#, php-format
-#@ simple-revisions-delete
-msgid "1 revision has been deleted"
-msgid_plural "%s revisions have been deleted"
-msgstr[0] "1 Revision wurde entfernt"
-msgstr[1] "%s Revisionen wurden entfernt"
-
-#: wp-simple-revisions-delete-bulk.php:63
-#@ simple-revisions-delete
-msgid "Note: You can only purge revisions for the posts you're allowed to delete"
-msgstr "Hinweis: Du kannst nur Revisionen entfernen für Beiträge, die Du auch löschen könntest"
-
-#: wp-simple-revisions-delete-bulk.php:97
-#@ simple-revisions-delete
-msgid "No revision to delete"
-msgstr "Keine Revisionen zum Entfernen"
-
-#: wp-simple-revisions-delete-single.php:30
-#@ simple-revisions-delete
-msgid "Purging"
-msgstr "Entferne"
-
-#: wp-simple-revisions-delete-single.php:31
-#@ simple-revisions-delete
+#: includes/class-wpsrd-block-editor.php:58
+#: includes/class-wpsrd-classic-editor.php:121
 msgid "Purge"
-msgstr "Entfernen"
+msgstr "Bereinigen"
 
-#: wp-simple-revisions-delete-single.php:64
-#@ simple-revisions-delete
+#: includes/class-wpsrd-block-editor.php:59
+#: includes/class-wpsrd-classic-editor.php:90
+msgid "Purging…"
+msgstr "Wird bereinigt …"
+
+#: includes/class-wpsrd-block-editor.php:60
+msgid "No revision to delete."
+msgstr "Keine Revision zum Löschen vorhanden."
+
+#: includes/class-wpsrd-block-editor.php:61
+msgid "The revisions could not be deleted."
+msgstr "Die Revisionen konnten nicht gelöscht werden."
+
+#. translators: %s: number of deleted revisions.
+#: includes/class-wpsrd-block-editor.php:63
+#, php-format
+msgid "%s revision deleted."
+msgstr "%s Revision gelöscht."
+
+#. translators: %s: number of deleted revisions.
+#: includes/class-wpsrd-block-editor.php:65
+#, php-format
+msgid "%s revisions deleted."
+msgstr "%s Revisionen gelöscht."
+
+#. translators: %s: number of revisions.
+#: includes/class-wpsrd-block-editor.php:67
+#, php-format
+msgid "%s revision"
+msgstr "%s Revision"
+
+#. translators: %s: number of revisions.
+#: includes/class-wpsrd-block-editor.php:69
+#, php-format
+msgid "%s revisions"
+msgstr "%s Revisionen"
+
+#: includes/class-wpsrd-bulk-actions.php:50
+msgid "Purge revisions"
+msgstr "Revisionen bereinigen"
+
+#: includes/class-wpsrd-classic-editor.php:91
 msgid "Purged"
-msgstr "Entfernt"
+msgstr "Bereinigt"
 
-#: wp-simple-revisions-delete-single.php:78
-#@ simple-revisions-delete
-msgid "There is no revisions for this post"
-msgstr "Dieser Beitrag hat keine Revisionen"
+#: includes/class-wpsrd-classic-editor.php:92
+msgid "Deleting…"
+msgstr "Wird gelöscht …"
 
-#. translators: plugin header field 'Name'
-#: wp-simple-revisions-delete.php:0
-#@ simple-revisions-delete
-msgid "Simple Revisions Delete by b*web"
-msgstr ""
+#: includes/class-wpsrd-classic-editor.php:93
+msgid "Deleted"
+msgstr "Gelöscht"
 
-#. translators: plugin header field 'PluginURI'
-#. translators: plugin header field 'AuthorURI'
-#: wp-simple-revisions-delete.php:0
-#@ simple-revisions-delete
-msgid "http://b-website.com/"
-msgstr ""
+#: includes/class-wpsrd-classic-editor.php:94
+msgid "Something went wrong, please reload the page."
+msgstr "Etwas ist schiefgelaufen, bitte lade die Seite neu."
 
-#. translators: plugin header field 'Description'
-#: wp-simple-revisions-delete.php:0
-#@ simple-revisions-delete
-msgid "Simple Revisions Delete add a discreet link within a post submit box to let you purge (delete) its revisions via AJAX. Bulk action is also available."
-msgstr ""
+#: includes/class-wpsrd-classic-editor.php:95
+msgid "Delete"
+msgstr "Löschen"
 
-#. translators: plugin header field 'Author'
-#: wp-simple-revisions-delete.php:0
-#@ simple-revisions-delete
-msgid "Brice CAPOBIANCO"
-msgstr ""
+#. translators: %s: revision label, for instance its date.
+#: includes/class-wpsrd-classic-editor.php:97
+#, php-format
+msgid "Delete the revision %s"
+msgstr "Revision %s löschen"
 
-#. translators: plugin header field 'Version'
-#: wp-simple-revisions-delete.php:0
-#@ simple-revisions-delete
-msgid "1.4.6"
-msgstr ""
+#: includes/class-wpsrd-classic-editor.php:165
+#: includes/class-wpsrd-rest-controller.php:108
+msgid "You are not allowed to delete the revisions of this post."
+msgstr "Du darfst die Revisionen dieses Beitrags nicht löschen."
 
+#. translators: %s: number of deleted revisions.
+#: includes/class-wpsrd-notices.php:61
+#, php-format
+msgid "%s revision has been deleted."
+msgid_plural "%s revisions have been deleted."
+msgstr[0] "%s Revision wurde gelöscht."
+msgstr[1] "%s Revisionen wurden gelöscht."
+
+#: includes/class-wpsrd-notices.php:65
+msgid "No revision has been deleted."
+msgstr "Es wurde keine Revision gelöscht."
+
+#: includes/class-wpsrd-notices.php:72
+#, php-format
+msgid "%s post was skipped because you are not allowed to delete it."
+msgid_plural "%s posts were skipped because you are not allowed to delete them."
+msgstr[0] "%s Beitrag wurde übersprungen, weil du ihn nicht löschen darfst."
+msgstr[1] "%s Beiträge wurden übersprungen, weil du sie nicht löschen darfst."
+
+#: includes/class-wpsrd-notices.php:82
+msgid "Some revisions could not be deleted."
+msgstr "Einige Revisionen konnten nicht gelöscht werden."
+
+#: includes/class-wpsrd-notices.php:122
+msgid ""
+"Post revisions are disabled on this site: the \"Simple Revisions Delete\" "
+"plugin has nothing to do here."
+msgstr "Beitragsrevisionen sind auf dieser Website deaktiviert: Das Plugin „Simple Revisions Delete“ wird hier nicht benötigt."
+
+#: includes/class-wpsrd-notices.php:124
+msgid "Dismiss this notice permanently"
+msgstr "Diesen Hinweis dauerhaft ausblenden"
+
+#: includes/class-wpsrd-notices.php:147
+msgid "You are not allowed to do this."
+msgstr "Du darfst das nicht tun."
+
+#: includes/class-wpsrd-plugin.php:56
+msgid "More b*web plugins"
+msgstr "Weitere b*web-Plugins"
+
+#: includes/class-wpsrd-plugin.php:62
+msgid "Donate to this plugin"
+msgstr "Für dieses Plugin spenden"
+
+#: includes/class-wpsrd-rest-controller.php:39
+msgid "ID of the post owning the revisions."
+msgstr "ID des Beitrags, zu dem die Revisionen gehören."
+
+#: includes/class-wpsrd-rest-controller.php:72
+msgid "ID of the revision to delete."
+msgstr "ID der zu löschenden Revision."
+
+#: includes/class-wpsrd-rest-controller.php:100
+msgid "This post does not exist."
+msgstr "Dieser Beitrag existiert nicht."
+
+#: includes/class-wpsrd-revisions.php:130
+msgid "This revision does not belong to this post."
+msgstr "Diese Revision gehört nicht zu diesem Beitrag."
+
+#: includes/class-wpsrd-revisions.php:144
+msgid "The revision could not be deleted."
+msgstr "Die Revision konnte nicht gelöscht werden."

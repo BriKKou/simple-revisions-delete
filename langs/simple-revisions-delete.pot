@@ -1,0 +1,165 @@
+# Translation template for the Simple Revisions Delete plugin.
+# Copyright (C) 2026 Brice CAPOBIANCO
+# This file is distributed under the same license as the Simple Revisions Delete package.
+# Brice CAPOBIANCO <https://b-website.com/contact>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Simple Revisions Delete 2.0.0\n"
+"Report-Msgid-Bugs-To: https://b-website.com/contact\n"
+"POT-Creation-Date: 2026-09-02 08:41+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: includes/class-wpsrd-block-editor.php:57
+msgid "Revisions"
+msgstr ""
+
+#: includes/class-wpsrd-block-editor.php:58
+#: includes/class-wpsrd-classic-editor.php:121
+msgid "Purge"
+msgstr ""
+
+#: includes/class-wpsrd-block-editor.php:59
+#: includes/class-wpsrd-classic-editor.php:90
+msgid "Purging…"
+msgstr ""
+
+#: includes/class-wpsrd-block-editor.php:60
+msgid "No revision to delete."
+msgstr ""
+
+#: includes/class-wpsrd-block-editor.php:61
+msgid "The revisions could not be deleted."
+msgstr ""
+
+#. translators: %s: number of deleted revisions.
+#: includes/class-wpsrd-block-editor.php:63
+#, php-format
+msgid "%s revision deleted."
+msgstr ""
+
+#. translators: %s: number of deleted revisions.
+#: includes/class-wpsrd-block-editor.php:65
+#, php-format
+msgid "%s revisions deleted."
+msgstr ""
+
+#. translators: %s: number of revisions.
+#: includes/class-wpsrd-block-editor.php:67
+#, php-format
+msgid "%s revision"
+msgstr ""
+
+#. translators: %s: number of revisions.
+#: includes/class-wpsrd-block-editor.php:69
+#, php-format
+msgid "%s revisions"
+msgstr ""
+
+#: includes/class-wpsrd-bulk-actions.php:50
+msgid "Purge revisions"
+msgstr ""
+
+#: includes/class-wpsrd-classic-editor.php:91
+msgid "Purged"
+msgstr ""
+
+#: includes/class-wpsrd-classic-editor.php:92
+msgid "Deleting…"
+msgstr ""
+
+#: includes/class-wpsrd-classic-editor.php:93
+msgid "Deleted"
+msgstr ""
+
+#: includes/class-wpsrd-classic-editor.php:94
+msgid "Something went wrong, please reload the page."
+msgstr ""
+
+#: includes/class-wpsrd-classic-editor.php:95
+msgid "Delete"
+msgstr ""
+
+#. translators: %s: revision label, for instance its date.
+#: includes/class-wpsrd-classic-editor.php:97
+#, php-format
+msgid "Delete the revision %s"
+msgstr ""
+
+#: includes/class-wpsrd-classic-editor.php:165
+#: includes/class-wpsrd-rest-controller.php:108
+msgid "You are not allowed to delete the revisions of this post."
+msgstr ""
+
+#. translators: %s: number of deleted revisions.
+#: includes/class-wpsrd-notices.php:61
+#, php-format
+msgid "%s revision has been deleted."
+msgid_plural "%s revisions have been deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-wpsrd-notices.php:65
+msgid "No revision has been deleted."
+msgstr ""
+
+#: includes/class-wpsrd-notices.php:72
+#, php-format
+msgid "%s post was skipped because you are not allowed to delete it."
+msgid_plural ""
+"%s posts were skipped because you are not allowed to delete them."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-wpsrd-notices.php:82
+msgid "Some revisions could not be deleted."
+msgstr ""
+
+#: includes/class-wpsrd-notices.php:122
+msgid ""
+"Post revisions are disabled on this site: the \"Simple Revisions Delete\" "
+"plugin has nothing to do here."
+msgstr ""
+
+#: includes/class-wpsrd-notices.php:124
+msgid "Dismiss this notice permanently"
+msgstr ""
+
+#: includes/class-wpsrd-notices.php:147
+msgid "You are not allowed to do this."
+msgstr ""
+
+#: includes/class-wpsrd-plugin.php:56
+msgid "More b*web plugins"
+msgstr ""
+
+#: includes/class-wpsrd-plugin.php:62
+msgid "Donate to this plugin"
+msgstr ""
+
+#: includes/class-wpsrd-rest-controller.php:39
+msgid "ID of the post owning the revisions."
+msgstr ""
+
+#: includes/class-wpsrd-rest-controller.php:72
+msgid "ID of the revision to delete."
+msgstr ""
+
+#: includes/class-wpsrd-rest-controller.php:100
+msgid "This post does not exist."
+msgstr ""
+
+#: includes/class-wpsrd-revisions.php:130
+msgid "This revision does not belong to this post."
+msgstr ""
+
+#: includes/class-wpsrd-revisions.php:144
+msgid "The revision could not be deleted."
+msgstr ""
