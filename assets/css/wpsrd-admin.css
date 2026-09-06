@@ -1,0 +1,109 @@
+/**
+ * Simple Revisions Delete - admin styles.
+ *
+ * @package Simple_Revisions_Delete
+ */
+
+/* Classic editor - purge control, moved next to the core revisions counter. */
+.misc-pub-revisions .wpsrd-purge {
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+.misc-pub-revisions .wpsrd-purge__button {
+  color: #8a2424;
+}
+
+.misc-pub-revisions .wpsrd-purge__button:hover,
+.misc-pub-revisions .wpsrd-purge__button:focus {
+  color: #a00;
+}
+
+.wpsrd-purge__spinner {
+  float: none;
+  margin: 0 0 0 4px;
+  vertical-align: text-bottom;
+}
+
+.wpsrd-purge__status {
+  white-space: normal;
+}
+
+.wpsrd-purge__status:empty {
+  display: none;
+}
+
+.wpsrd-purge__status.is-success::before,
+.wpsrd-purge__status.is-error::before {
+  font-family: dashicons;
+  font-size: 16px;
+  line-height: 1.2;
+  vertical-align: text-bottom;
+  margin-right: 2px;
+}
+
+.wpsrd-purge__status.is-success::before {
+  content: "\f147";
+  color: #007017;
+}
+
+.wpsrd-purge__status.is-error {
+  color: #8a2424;
+}
+
+.wpsrd-purge__status.is-error::before {
+  content: "\f534";
+}
+
+/* The fallback form only carries hidden fields. */
+#wpsrd-purge-form {
+  display: contents;
+}
+
+/* Classic editor - revisions metabox. */
+.post-revisions .wpsrd-single-delete {
+  color: #8a2424;
+}
+
+.post-revisions .wpsrd-single-delete:hover,
+.post-revisions .wpsrd-single-delete:focus {
+  color: #a00;
+}
+
+.post-revisions .wpsrd-single-delete[disabled] {
+  color: #646970;
+}
+
+/*
+ * Block editor - the plugin renders a complete revisions row carrying the
+ * purge button, so the native one is hidden to avoid a duplicate. Should these
+ * class names ever change, the native row simply shows up again.
+ */
+.editor-post-last-revision__panel,
+.edit-post-post-last-revision__row,
+.editor-post-panel__row:has(.editor-post-last-revision__title),
+.components-panel__row:has(.editor-post-last-revision__title) {
+  display: none;
+}
+
+.wpsrd-post-status-info {
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.wpsrd-post-status-info__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wpsrd-post-status-info__count.components-button {
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wpsrd-purge__spinner {
+    animation: none;
+  }
+}
