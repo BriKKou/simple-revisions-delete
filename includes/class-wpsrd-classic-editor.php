@@ -37,6 +37,18 @@ class WPSRD_Classic_Editor {
 		add_action( 'post_submitbox_misc_actions', array( __CLASS__, 'render_purge_control' ) );
 		add_action( 'admin_footer', array( __CLASS__, 'render_fallback_form' ) );
 		add_action( 'admin_post_wpsrd_purge_revisions', array( __CLASS__, 'handle_form_submission' ) );
+		add_action( 'wp_ajax_wpsrd_purge_revisions', array( __CLASS__, 'handle_ajax_purge' ) );
+		add_action( 'wp_ajax_wpsrd_delete_revision', array( __CLASS__, 'handle_ajax_delete' ) );
+	}
+
+	/**
+	 * Returns the nonce action protecting the revisions of a post.
+	 *
+	 * @param int $post_id Post ID.
+	 * @return string Nonce action.
+	 */
+	private static function nonce_action( $post_id ) {
+		return 'wpsrd_purge_' . absint( $post_id );
 	}
 
 	/**
@@ -76,7 +88,7 @@ class WPSRD_Classic_Editor {
 		wp_enqueue_script(
 			self::SCRIPT_HANDLE,
 			WPSRD_URL . 'assets/js/wpsrd-classic-editor.js',
-			array( 'wp-api-fetch', 'wp-a11y' ),
+			array( 'wp-a11y' ),
 			WPSRD_VERSION,
 			true
 		);
@@ -85,8 +97,10 @@ class WPSRD_Classic_Editor {
 			self::SCRIPT_HANDLE,
 			'wpsrdClassic',
 			array(
-				'postId' => $post->ID,
-				'i18n'   => array(
+				'postId'  => $post->ID,
+				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+				'nonce'   => wp_create_nonce( self::nonce_action( $post->ID ) ),
+				'i18n'    => array(
 					'purging'      => __( 'Purging…', 'simple-revisions-delete' ),
 					'purged'       => __( 'Purged', 'simple-revisions-delete' ),
 					'deleting'     => __( 'Deleting…', 'simple-revisions-delete' ),
@@ -143,7 +157,7 @@ class WPSRD_Classic_Editor {
 		}
 		?>
 		<form id="<?php echo esc_attr( self::FORM_ID ); ?>" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="wpsrd-purge__form">
-			<?php wp_nonce_field( 'wpsrd_purge_' . $post->ID, 'wpsrd_nonce' ); ?>
+			<?php wp_nonce_field( self::nonce_action( $post->ID ), 'wpsrd_nonce' ); ?>
 			<input type="hidden" name="action" value="wpsrd_purge_revisions" />
 			<input type="hidden" name="post_id" value="<?php echo esc_attr( (string) $post->ID ); ?>" />
 		</form>
@@ -158,7 +172,7 @@ class WPSRD_Classic_Editor {
 	public static function handle_form_submission() {
 		$post_id = isset( $_POST['post_id'] ) ? absint( wp_unslash( $_POST['post_id'] ) ) : 0;
 
-		check_admin_referer( 'wpsrd_purge_' . $post_id, 'wpsrd_nonce' );
+		check_admin_referer( self::nonce_action( $post_id ), 'wpsrd_nonce' );
 
 		if ( ! WPSRD_Revisions::user_can_purge( $post_id ) ) {
 			wp_die(
@@ -183,5 +197,81 @@ class WPSRD_Classic_Editor {
 
 		wp_safe_redirect( $redirect );
 		exit;
+	}
+
+	/**
+	 * Validates an AJAX request and returns the targeted post ID.
+	 *
+	 * Sends a JSON error and stops when the nonce or the capability check fails.
+	 *
+	 * @return int Post ID.
+	 */
+	private static function get_ajax_post_id() {
+		$post_id = isset( $_POST['post_id'] ) ? absint( wp_unslash( $_POST['post_id'] ) ) : 0;
+
+		if ( ! check_ajax_referer( self::nonce_action( $post_id ), 'wpsrd_nonce', false ) ) {
+			wp_send_json_error(
+				array( 'message' => __( 'Something went wrong, please reload the page.', 'simple-revisions-delete' ) ),
+				403
+			);
+		}
+
+		if ( ! WPSRD_Revisions::user_can_purge( $post_id ) ) {
+			wp_send_json_error(
+				array( 'message' => __( 'You are not allowed to delete the revisions of this post.', 'simple-revisions-delete' ) ),
+				403
+			);
+		}
+
+		return $post_id;
+	}
+
+	/**
+	 * Sends the outcome of a deletion as a JSON response.
+	 *
+	 * @param int          $post_id Post ID.
+	 * @param int|WP_Error $deleted Number of deleted revisions, or error object.
+	 * @return void
+	 */
+	private static function send_ajax_result( $post_id, $deleted ) {
+		if ( is_wp_error( $deleted ) ) {
+			$data = $deleted->get_error_data();
+
+			wp_send_json_error(
+				array( 'message' => $deleted->get_error_message() ),
+				isset( $data['status'] ) ? (int) $data['status'] : 500
+			);
+		}
+
+		wp_send_json_success(
+			array(
+				'count'   => WPSRD_Revisions::count( $post_id ),
+				'deleted' => (int) $deleted,
+			)
+		);
+	}
+
+	/**
+	 * Purges every revision of a post through admin-ajax.
+	 *
+	 * @return void
+	 */
+	public static function handle_ajax_purge() {
+		$post_id = self::get_ajax_post_id();
+
+		self::send_ajax_result( $post_id, WPSRD_Revisions::purge( $post_id ) );
+	}
+
+	/**
+	 * Deletes a single revision through admin-ajax.
+	 *
+	 * @return void
+	 */
+	public static function handle_ajax_delete() {
+		$post_id     = self::get_ajax_post_id();
+		$revision_id = isset( $_POST['revision_id'] ) ? absint( wp_unslash( $_POST['revision_id'] ) ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Verified in get_ajax_post_id().
+		$result      = WPSRD_Revisions::delete_one( $revision_id, $post_id );
+
+		self::send_ajax_result( $post_id, is_wp_error( $result ) ? $result : 1 );
 	}
 }

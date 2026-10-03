@@ -32,10 +32,20 @@ final class WPSRD_Plugin {
 	/**
 	 * Loads the plugin translations.
 	 *
+	 * WordPress only reads the bundled files when no language pack exists, so
+	 * strings missing from an outdated pack would stay in English. Both are
+	 * loaded: the first file holding a string wins, so the language pack keeps
+	 * precedence and the bundled file fills the gaps.
+	 *
 	 * @return void
 	 */
 	public static function load_textdomain() {
-		load_plugin_textdomain( 'simple-revisions-delete', false, dirname( WPSRD_BASENAME ) . '/langs' );
+		$domain = 'simple-revisions-delete';
+		$locale = determine_locale();
+		$mofile = $domain . '-' . $locale . '.mo';
+
+		load_textdomain( $domain, WP_LANG_DIR . '/plugins/' . $mofile, $locale );
+		load_textdomain( $domain, WPSRD_PATH . 'langs/' . $mofile, $locale );
 	}
 
 	/**

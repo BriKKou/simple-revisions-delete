@@ -5,7 +5,7 @@ Tags: revisions, cleanup, delete, purge, gutenberg
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,7 +29,7 @@ The plugin blends into the WordPress admin, relies exclusively on core functions
 * In the **classic editor**, the same control appears in the Publish metabox, and each revision listed in the Revisions metabox gets its own "Delete" button.
 * In the **posts and pages list**, a "Purge revisions" bulk action lets you clean up several posts at once.
 
-Everything happens through the WordPress REST API, so no page reload is needed. Without JavaScript, the classic editor control falls back to a regular form submission and the bulk action keeps working.
+Everything happens in the background, so no page reload is needed: the block editor relies on the WordPress REST API, the classic editor on admin-ajax. Without JavaScript, the classic editor control falls back to a regular form submission and the bulk action keeps working.
 
 = What's new in 2.0? =
 
@@ -138,24 +138,19 @@ No, and none is needed. The two filters documented above are the only configurat
 
 == Changelog ==
 
+= 2.0.2 - 2026/10/03 =
+* Classic editor: fix "not a valid JSON response" error
+* Classic editor: fix revisions list disappearing after a deletion
+
 = 2.0.1 - 2026/09/06 =
-* Fix: the 2.0.0 tag was published incorrectly and did not contain the code described below; this release republishes the 2.0.0 changes correctly
+* Fix broken 2.0.0 release
 
 = 2.0.0 - 2026/09/02 =
-* Block editor: integration rewritten as a real editor plugin (`PluginPostStatusInfo` + REST API). The purge control had been broken since Gutenberg 7.1, when the DOM the old jQuery workaround relied on was reorganised
-* Block editor: a single revisions row now carries the count and the purge button, replacing the native one instead of adding a second row
-* Block editor: the revision count is read from the REST API and refreshed after every save
-* New: `wpsrd/v1` REST namespace replacing the admin-ajax endpoints
-* Security: destructive actions no longer travel through `GET` requests
-* Security: dismissing the "revisions are disabled" notice is now nonce protected
-* Security: capability and post type are checked again on every request, whatever the entry point
-* Accessibility: real buttons instead of placeholder links, live regions, focus moved to the closest remaining control after a deletion, screen-reader announcements, no feedback conveyed by colour alone
-* Bulk action: now built on the native `bulk_actions` and `handle_bulk_actions` filters instead of a jQuery-injected option
-* Refactoring: one class per responsibility, PHPDoc throughout, no more inline `<style>` and `<script>` blocks
-* Classic editor: the purge control sits next to the core revisions counter again, and disappears once the last revision is gone
-* Classic editor: deleting revisions one by one decrements the counter live
-* Notices now travel through query arguments instead of transients
-* Translations updated for French, German and Dutch, and a `.pot` template added
+* Block editor: purge control rewritten, works again
+* New REST API endpoints
+* Security and accessibility improvements
+* Code refactoring
+* Translations updated
 * Requires WordPress 6.4 and PHP 7.4
 
 = 1.5.5 – 2025/11/30 =
@@ -264,11 +259,14 @@ No, and none is needed. The two filters documented above are the only configurat
 
 == Upgrade Notice ==
 
+= 2.0.2 =
+Fixes classic editor regressions.
+
 = 2.0.1 =
-Corrects a botched 2.0.0 release that did not contain the intended code. Everyone should update to this version.
+Fixes the broken 2.0.0 release.
 
 = 2.0.0 =
-Major release. The block editor purge control works again, and the plugin now requires WordPress 6.4 and PHP 7.4. If you built anything on the old admin-ajax endpoints, switch to the `wpsrd/v1` REST routes documented in the description.
+Major release. Requires WordPress 6.4 and PHP 7.4.
 
 = 1.0 =
 First release.

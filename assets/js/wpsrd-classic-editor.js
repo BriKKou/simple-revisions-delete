@@ -2,8 +2,12 @@
  * Simple Revisions Delete - classic editor.
  *
  * Moves the purge control next to the core revisions counter, turns its form
- * submission into a REST call, and adds a delete button to each revision of
- * the revisions metabox.
+ * submission into an admin-ajax call, and adds a delete button to each
+ * revision of the revisions metabox.
+ *
+ * admin-ajax is used rather than the REST API: sites running the classic
+ * editor often restrict the REST API, and some firewalls reject the method
+ * override header that REST DELETE requests rely on.
  *
  * @package Simple_Revisions_Delete
  */
@@ -11,13 +15,13 @@
 ( function ( wp, settings ) {
   'use strict';
 
-  if ( ! wp || ! wp.apiFetch || ! settings ) {
+  if ( ! settings || ! window.fetch || ! window.FormData ) {
     return;
   }
 
-  var apiFetch = wp.apiFetch;
+  wp = wp || {};
+
   var i18n = settings.i18n;
-  var basePath = '/wpsrd/v1/posts/' + parseInt( settings.postId, 10 ) + '/revisions';
 
   var control = document.getElementById( 'wpsrd-purge' );
   var form = document.getElementById( 'wpsrd-purge-form' );
@@ -26,6 +30,39 @@
   var status = control ? control.querySelector( '.wpsrd-purge__status' ) : null;
   var spinner = control ? control.querySelector( '.wpsrd-purge__spinner' ) : null;
   var button = control ? control.querySelector( '.wpsrd-purge__button' ) : null;
+
+  /**
+   * Sends an admin-ajax request on the revisions of the edited post.
+   *
+   * @param {string} action Ajax action.
+   * @param {Object} fields Extra fields to send.
+   * @return {Promise<Object>} Resolves with the response data, rejects with an Error.
+   */
+  function request( action, fields ) {
+    var body = new window.FormData();
+
+    body.append( 'action', action );
+    body.append( 'post_id', String( settings.postId ) );
+    body.append( 'wpsrd_nonce', settings.nonce );
+
+    Object.keys( fields || {} ).forEach( function ( key ) {
+      body.append( key, String( fields[ key ] ) );
+    } );
+
+    return window.fetch( settings.ajaxUrl, { method: 'POST', credentials: 'same-origin', body: body } )
+      .then( function ( response ) {
+        return response.json().catch( function () {
+          return null;
+        } );
+      } )
+      .then( function ( json ) {
+        if ( json && json.success && json.data && 'number' === typeof json.data.count ) {
+          return json.data;
+        }
+
+        throw new Error( ( json && json.data && json.data.message ) || i18n.error );
+      } );
+  }
 
   /**
    * Announces a message to assistive technologies only.
@@ -166,7 +203,7 @@
       spinner.classList.add( 'is-active' );
     }
 
-    apiFetch( { path: basePath, method: 'DELETE' } )
+    request( 'wpsrd_purge_revisions' )
       .then( function ( response ) {
         removePurgeButton();
         updateCount( response.count );
@@ -195,7 +232,7 @@
     trigger.disabled = true;
     trigger.textContent = i18n.deleting;
 
-    apiFetch( { path: basePath + '/' + revisionId, method: 'DELETE' } )
+    request( 'wpsrd_delete_revision', { revision_id: revisionId } )
       .then( function ( response ) {
         speak( i18n.deleted, false );
         moveFocusAfter( item );

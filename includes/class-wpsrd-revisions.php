@@ -79,13 +79,33 @@ class WPSRD_Revisions {
 	}
 
 	/**
+	 * Returns the IDs of every revision of a post.
+	 *
+	 * Revisions are listed even when the site no longer keeps any: existing
+	 * ones must stay reachable, and `wp_revisions_to_keep` filters may answer
+	 * differently in REST, AJAX and admin contexts.
+	 *
+	 * @param int $post_id Post ID.
+	 * @return int[] Revision IDs.
+	 */
+	public static function get_ids( $post_id ) {
+		return wp_get_post_revisions(
+			absint( $post_id ),
+			array(
+				'fields'        => 'ids',
+				'check_enabled' => false,
+			)
+		);
+	}
+
+	/**
 	 * Counts the revisions of a post.
 	 *
 	 * @param int $post_id Post ID.
 	 * @return int Number of revisions.
 	 */
 	public static function count( $post_id ) {
-		return count( wp_get_post_revisions( absint( $post_id ), array( 'fields' => 'ids' ) ) );
+		return count( self::get_ids( $post_id ) );
 	}
 
 	/**
@@ -95,10 +115,9 @@ class WPSRD_Revisions {
 	 * @return int|WP_Error Number of deleted revisions, or an error when a deletion failed.
 	 */
 	public static function purge( $post_id ) {
-		$revision_ids = wp_get_post_revisions( absint( $post_id ), array( 'fields' => 'ids' ) );
-		$deleted      = 0;
+		$deleted = 0;
 
-		foreach ( $revision_ids as $revision_id ) {
+		foreach ( self::get_ids( $post_id ) as $revision_id ) {
 			$result = wp_delete_post_revision( $revision_id );
 
 			if ( is_wp_error( $result ) ) {

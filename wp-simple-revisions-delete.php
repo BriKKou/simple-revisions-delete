@@ -5,7 +5,7 @@
  * Description:       Delete your post revisions individually or all at once (purge or bulk action). Works with both the block editor and the classic editor.
  * Author:            Brice CAPOBIANCO
  * Author URI:        https://b-website.com/
- * Version:           2.0.1
+ * Version:           2.0.2
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * License:           GPL-2.0-or-later
@@ -35,7 +35,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WPSRD_VERSION', '2.0.1' );
+define( 'WPSRD_VERSION', '2.0.2' );
 define( 'WPSRD_FILE', __FILE__ );
 define( 'WPSRD_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WPSRD_URL', plugin_dir_url( __FILE__ ) );
